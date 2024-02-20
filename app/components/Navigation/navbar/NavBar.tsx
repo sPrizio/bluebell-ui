@@ -1,0 +1,85 @@
+'use client'
+
+import React, {useState} from "react";
+import styles from "@/app/components/Navigation/navbar/NavBar.module.scss";
+import NavBarItem from "@/app/components/Navigation/navbar/NavBarItem";
+import {resolveIcon} from "@/app/services/resolver/iconResolverService";
+import {RxHamburgerMenu} from "react-icons/rx";
+import MainLogo from "@/app/components/Navigation/logo/MainLogo";
+import Avatar from "@/app/components/Navigation/avatar/Avatar";
+import UserMenu from "@/app/components/Navigation/menu/UserMenu";
+
+/**
+ * The top-page navigation component
+ *
+ * @author Stephen Prizio
+ * @version 0.0.1
+ */
+function NavBar() {
+
+  const baseClass = "nav-bar"
+
+  const [currentTab, setCurrentTab] = useState('/trades')
+  const [userMenuActive, setUserMenuActive] = useState(false)
+
+
+  //  GENERAL FUNCTIONS
+
+  /**
+   * Handles selecting a new tab on link clicks
+   *
+   * @param val new route
+   */
+  function handleClick(val: string) {
+    setCurrentTab(val)
+  }
+
+
+  //  RENDER
+
+  return (
+    <div className={styles[baseClass]}>
+      <div className={styles[`${baseClass}__container`]}>
+        <div className={styles[`${baseClass}__items`] + ' ' + styles[`${baseClass}__items--left`]}>
+          <div className={styles[`${baseClass}__item`] + ' ' + styles[`${baseClass}__item--brand`]}>
+            <MainLogo />
+          </div>
+          <div className={styles[`${baseClass}__item`]}>
+            <NavBarItem route={'/trades'} label={'Trades'} active={'/trades' === currentTab}
+                        icon={resolveIcon('CgArrowsExchange')} handler={handleClick}/>
+          </div>
+          <div className={styles[`${baseClass}__item`]}>
+            <NavBarItem route={'/trading-history'} label={'History'} active={'/trading-history' === currentTab}
+                        icon={resolveIcon('MdOutlineHistory')} handler={handleClick}/>
+          </div>
+          <div className={styles[`${baseClass}__item`]}>
+            <NavBarItem route={'/news'} label={'Market News'} active={'/news' === currentTab}
+                        icon={resolveIcon('FaNewspaper')} handler={handleClick}/>
+          </div>
+        </div>
+        <div className={styles[`${baseClass}__items`] + ' ' + styles[`${baseClass}__items--right`]}>
+          <div className={styles[`${baseClass}__item`]}>
+            <Avatar handler={() => setUserMenuActive(!userMenuActive)} />
+            <UserMenu
+              active={userMenuActive}
+              options={[
+                {label: 'Account', link: '/account', icon: 'VscAccount'},
+                {label: 'Report an Issue', link: '/report', icon: 'BsPatchExclamation'},
+                {label: 'Switch Accounts', link: '/swap', icon: 'PiUserSwitchLight'},
+                {label: 'Sign Out', link: '/logout', icon: 'RiLogoutCircleLine'}
+              ]}
+              handler={handleClick}
+            />
+          </div>
+          <div className={styles[`${baseClass}__item`] + ' ' + styles[`${baseClass}__item--mobile`]}>
+            <div className={styles[`${baseClass}__mobile-menu`]}>
+              <RxHamburgerMenu />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default NavBar;
