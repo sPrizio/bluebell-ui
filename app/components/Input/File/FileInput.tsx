@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import styles from "@/app/components/Input/File/FileInput.module.scss";
 import SimpleInput from "@/app/components/Input/SimpleInput";
-import {CgSoftwareUpload} from "react-icons/cg";
+import {BiImport} from "react-icons/bi";
 
 /**
  * Custom input to handle file inputs
@@ -37,7 +37,7 @@ function FileInput({val = null, handler, displayValue = ''}: Readonly<{ val: any
     <div className={styles[baseClass]}>
       <label htmlFor="file-upload" className={styles[`${baseClass}__label`]}>
         <SimpleInput hasButton={true} buttonText={'Import'} isRounded={true} placeholder={'Choose a file...'}
-                     isLoading={false} buttonIcon={<CgSoftwareUpload />} inputType={"file"}
+                     isLoading={false} buttonIcon={<BiImport />} inputType={"file"}
                      val={displayValue}
         />
       </label>

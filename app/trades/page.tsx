@@ -77,8 +77,6 @@ export default function Trades() {
           controls={[<SimpleSelect options={quickPicks} key={0}/>]}
         />
         <br />
-        Modal redesign
-        <br />
         Trade History Page
         <br />
         SCSS refactor (variable reference cleanup, restructure nesting)

@@ -15,11 +15,12 @@ export const metadata: Metadata = {
  * @author Stephen Prizio
  * @version 0.0.1
  */
-export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout(
+  {
+    children,
+  }: Readonly<{
+    children: React.ReactNode
+  }>) {
 
   const baseClass = 'flex-page'
 

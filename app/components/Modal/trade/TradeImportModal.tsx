@@ -5,6 +5,7 @@ import {delay} from "@/app/services/util/utilService";
 import FileInput from "@/app/components/Input/File/FileInput";
 import BaseMessage from "@/app/components/Message/BaseMessage";
 import Link from "next/link";
+import {FaFileImport} from "react-icons/fa6";
 
 /**
  * Modal for importing trades into the system
@@ -113,6 +114,7 @@ function TradeImportModal({active = false, closeHandler}: Readonly<{ active: boo
       content={[content]}
       hasControls={true}
       submitHandler={handleSubmit}
+      icon={<FaFileImport />}
     />
   )
 }

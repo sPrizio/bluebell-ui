@@ -1,6 +1,7 @@
 import styles from './layout.module.scss'
 import PageHeaderSection from "@/app/components/Section/page/header/PageHeaderSection";
 import React from "react";
+import {GoHistory} from "react-icons/go";
 
 /**
  * The default layout for the trading history page
@@ -16,16 +17,15 @@ export default function TradingHistoryLayout({children}: { children: React.React
   //  RENDER
 
   return (
-    <>
-      <div className={styles[baseClass]}>
-        <PageHeaderSection
-          title={'Trading History'}
-          controls={[]}
-        />
-        <div>
-          {children}
-        </div>
+    <div className={styles[baseClass]}>
+      <PageHeaderSection
+        title={'Trading History'}
+        controls={[]}
+        icon={<GoHistory/>}
+      />
+      <div>
+        {children}
       </div>
-    </>
+    </div>
   )
 }

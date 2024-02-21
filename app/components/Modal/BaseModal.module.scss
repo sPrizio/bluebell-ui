@@ -22,7 +22,7 @@ $border-radius: 1rem;
   &__content {
     margin: 7.5% auto; /* 7.5% from the top and centered */
     width: 50%;
-    max-width: 48rem;
+    max-width: 42rem;
     animation-name: animateTop;
     animation-duration: 750ms;
   }
@@ -45,6 +45,7 @@ $border-radius: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     font-weight: $font-weight-medium;
   }
 
@@ -52,8 +53,26 @@ $border-radius: 1rem;
     flex: 1;
   }
 
+  &__header-icon {
+    flex: 0 0 3rem;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    @include header-sizing(3, 'desktop');
+    @include mq-large-down {
+      @include header-sizing(3, 'mobile')
+    }
+  }
+
   &__header-close {
     flex: 0.25;
+
+    @include header-sizing(4, 'desktop');
+    @include mq-large-down {
+      @include header-sizing(4, 'mobile')
+    }
   }
 
   &__close-wrapper {
@@ -93,6 +112,7 @@ $border-radius: 1rem;
   }
 
   &__footer {
+    border-top: $border-width solid $color-grey-100;
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
   }

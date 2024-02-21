@@ -1,7 +1,7 @@
-import {IoMdClose} from "react-icons/io";
 import React from "react";
 import styles from '@/app/components/Modal/BaseModal.module.scss'
 import SimpleButton from "@/app/components/Button/SimpleButton";
+import {CgClose} from "react-icons/cg";
 
 /**
  * Base modal to be used as skeleton for custom modals
@@ -14,6 +14,7 @@ import SimpleButton from "@/app/components/Button/SimpleButton";
  * @param closeHandler handle closing the modal
  * @param cssClasses custom css classes
  * @param isLoading flag to mark the modal as loading
+ * @param icon optional icon
  *
  * @author Stephen Prizio
  * @version 0.0.1
@@ -28,6 +29,7 @@ function BaseModal(
     closeHandler,
     cssClasses = '',
     isLoading = false,
+    icon = null,
   }
     : Readonly<{
     active: boolean,
@@ -37,7 +39,8 @@ function BaseModal(
     submitHandler?: Function,
     closeHandler: Function,
     cssClasses?: string
-    isLoading?: boolean
+    isLoading?: boolean,
+    icon?: any
   }>) {
 
   const baseClass = "base-modal"
@@ -56,12 +59,19 @@ function BaseModal(
     <div className={styles[baseClass] + ' ' + (active ? styles[`${baseClass}--active`] : '')}>
       <div className={styles[`${baseClass}__content`]}>
         <div className={styles[`${baseClass}__header`] + ' ' + styles[`${baseClass}__content-item`]}>
+          {
+            icon ?
+              <div className={styles[`${baseClass}__header-item`] + ' ' + styles[`${baseClass}__header-icon`]}>
+                {icon}
+              </div>
+              : null
+          }
           <div className={styles[`${baseClass}__header-item`]}>
             {title}
           </div>
           <div className={styles[`${baseClass}__header-item`] + ' ' + styles[`${baseClass}__header-close`]}>
             <div className={styles[`${baseClass}__close-wrapper`]} onClick={cHandler}>
-              <IoMdClose />
+              <CgClose />
             </div>
           </div>
         </div>
@@ -79,7 +89,7 @@ function BaseModal(
             hasControls ?
               <div className={styles[`${baseClass}__footer-controls`]}>
                 <div className={styles[`${baseClass}__footer-control`]}>
-                  <SimpleButton text={'Cancel'} variant={"primary"} inverted={true} handler={closeHandler} />
+                  <SimpleButton text={'Cancel'} variant={"primary"} handler={closeHandler} plain={true} />
                 </div>
                 <div className={styles[`${baseClass}__footer-control`]}>
                   <SimpleButton text={'Submit'} variant={"primary"} handler={submitHandler} loading={isLoading} />
