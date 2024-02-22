@@ -115,12 +115,22 @@
   &__header {
     flex: 0.75;
     color: $color-ui-dark-card-header;
-    text-transform: uppercase;
 
     @include header-sizing(6, 'mobile');
     @include mq-large-up {
       @include header-sizing(6, 'desktop');
     }
+  }
+
+  &__sub-header {
+    @include body-sizing('small', 'mobile');
+    @include mq-large-up {
+      @include body-sizing('small', 'desktop');
+    }
+
+    color: $color-primary;
+    font-weight: $font-weight-bold !important;
+    letter-spacing: -0.0375rem !important;
   }
 
   &__subheader {

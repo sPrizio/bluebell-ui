@@ -68,4 +68,13 @@ export const CoreConstants = {
         ISOTimeFormat: 'HH:mm:ss',
         ISOWeekdayFormat: 'dddd'
     },
+
+    CssConstants: {
+        FontPrimary: '"Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;',
+        Black: '#000000',
+        White: '#FFFFFF',
+        ColorPrimary: '#0077E4',
+        ColorSuccess: '#10D096',
+        ColorDanger: '#FF316A',
+    },
 }

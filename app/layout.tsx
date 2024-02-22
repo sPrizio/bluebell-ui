@@ -1,5 +1,7 @@
 import type {Metadata} from 'next'
 import './assets/css/normalize.css'
+import 'react-datepicker/dist/react-datepicker.min.css'
+import './bluebell-datepicker.css'
 import styles from './layout.module.scss'
 import NavBar from "@/app/components/Navigation/navbar/NavBar";
 import Footer from "@/app/components/Footer/Footer";

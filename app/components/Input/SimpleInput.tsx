@@ -1,6 +1,5 @@
-import React, {ChangeEvent, ChangeEventHandler, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import styles from "@/app/components/Input/SimpleInput.module.scss";
-import {any} from "prop-types";
 
 /**
  * Basic universal input

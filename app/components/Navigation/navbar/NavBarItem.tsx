@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from "react";
+import React, {ReactNode} from "react";
 import styles from "@/app/components/Navigation/navbar/NavBarItem.module.scss";
 import Link from "next/link";
 

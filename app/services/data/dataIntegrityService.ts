@@ -32,4 +32,18 @@ export function formatNumberForDisplay(val: number) {
     return val.toLocaleString()
 }
 
+/**
+ * Displays negative points with bracket instead of negative sign
+ *
+ * @param val number
+ */
+export function formatNegativePoints(val: number) {
+
+    if (val < 0) {
+        return '(' + formatNumberForDisplay(Math.abs(val)) + ')'
+    }
+
+    return val
+}
+
 export default hasData;

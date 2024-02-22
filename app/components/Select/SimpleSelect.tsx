@@ -6,18 +6,41 @@ import {SimpleOption} from "@/app/types/appTypes";
 /**
  * Base select component that can be used wherever a select input is required
  *
+ * @param val tracked val
+ * @param options array of selectable options
+ * @param handler handler function
  * @author Stephen Prizio
  * @version 0.0.1
  */
-function SimpleSelect({options = []}: Readonly<{ options: Array<SimpleOption> }>) {
+function SimpleSelect({val = '', options = [], handler}: Readonly<{ val: string, options: Array<SimpleOption>, handler: Function }>) {
 
   const baseClass = "simple-select"
 
   const [active, setActive] = useState(false)
-  const [currentSelection, setCurrentSelection] = useState<SimpleOption>(options[0])
 
 
   //  GENERAL FUNCTIONS
+
+  /**
+   * Computes the initial state of the select based on the given properties
+   */
+  function getInitialSelection() {
+    if (options && options.length > 0) {
+      const returnVal = options.find(opt => opt.value === val)
+      return returnVal ?? options[0]
+    }
+
+    return { label: '', value: '' }
+  }
+
+  function getDisplayValue() {
+    if (options && options.length > 0) {
+      const returnVal = options.find(opt => opt.value === val)?.label
+      return returnVal ?? options[0].label
+    }
+
+    return ''
+  }
 
   /**
    * Toggles the menu active
@@ -29,19 +52,10 @@ function SimpleSelect({options = []}: Readonly<{ options: Array<SimpleOption> }>
   /**
    * Returns true if the given value is equal to the current selection
    *
-   * @param val currently selected menu item
+   * @param selection currently selected menu item
    */
-  function isCurrentSelection(val: SimpleOption) {
-    return currentSelection.value === val.value
-  }
-
-  /**
-   * Sets the current selection to be the value of the given option
-   *
-   * @param val clicked item
-   */
-  function handleSelect(val: SimpleOption) {
-    setCurrentSelection(val)
+  function isCurrentSelection(selection: SimpleOption) {
+    return val === selection.value
   }
 
 
@@ -51,7 +65,7 @@ function SimpleSelect({options = []}: Readonly<{ options: Array<SimpleOption> }>
     <div className={styles[`${baseClass}__wrapper`]} onClick={toggleActive}>
       <div className={styles[baseClass] + ' ' + (active ? styles[`${baseClass}--active`] : '')}>
         <div className={styles[`${baseClass}__item`] + ' ' + styles[`${baseClass}__content`]}>
-          {currentSelection.label}
+          {getDisplayValue()}
         </div>
         <div className={styles[`${baseClass}__item`] + ' ' + styles[`${baseClass}__icon`]}>
           <IoChevronDown/>
@@ -63,7 +77,7 @@ function SimpleSelect({options = []}: Readonly<{ options: Array<SimpleOption> }>
             <div
               key={key}
               className={styles[`${baseClass}__menu-item`] + ' ' + (isCurrentSelection(item) ? styles[`${baseClass}__menu-item--active`] : '')}
-              onClick={() => handleSelect(item)}
+              onClick={() => handler(item.value)}
             >
               {item.label}
             </div>

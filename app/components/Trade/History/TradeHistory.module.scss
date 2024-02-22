@@ -1,0 +1,51 @@
+@import "app/variables.module";
+@import "app/mixins.module";
+
+.trade-history {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  &__item {
+    flex: 1;
+
+    @include mq-medium-up {
+      &:not(:first-child) {
+        margin-left: 0.625rem;
+      }
+
+      &:not(:last-child) {
+        margin-right: 0.625rem;
+      }
+    }
+
+    @include mq-medium-down {
+      &:not(:first-child) {
+        margin-top: 0.625rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 0.625rem;
+      }
+    }
+  }
+
+  &__chart {
+    flex: 0.4;
+
+    @include mq-medium-down {
+      flex: 1;
+    }
+  }
+
+  &__break {
+    @include mq-medium-up {
+      display: none;
+    }
+
+    flex-basis: 100%;
+    height: 0;
+  }
+}

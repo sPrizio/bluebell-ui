@@ -2,7 +2,7 @@ import {MdAccountCircle, MdDashboard, MdOutlineHistory} from "react-icons/md";
 import {CgArrowsExchange} from "react-icons/cg";
 import {FaNewspaper} from "react-icons/fa";
 import {IoIosMail} from "react-icons/io";
-import {PiUserSwitch, PiUserSwitchLight, PiWarningCircleBold} from "react-icons/pi";
+import {PiUserSwitchLight, PiWarningCircleBold} from "react-icons/pi";
 import {RiLogoutCircleLine} from "react-icons/ri";
 import {BsPatchExclamation} from "react-icons/bs";
 import {VscAccount} from "react-icons/vsc";

@@ -2,7 +2,6 @@
 
 import React, {useState} from "react";
 import styles from "@/app/components/Navigation/desktop/DesktopSideNav.module.scss";
-import Avatar from "@/app/components/Navigation/avatar/Avatar";
 import SideNavMenuItem from "@/app/components/Navigation/menu/SideNavMenuItem";
 import MainLogo from "@/app/components/Navigation/logo/MainLogo";
 import {CoreConstants} from "@/app/constants";

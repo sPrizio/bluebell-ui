@@ -6,7 +6,7 @@ import SimpleButton from "@/app/components/Button/SimpleButton";
 import {MdDelete} from "react-icons/md";
 import BaseModal from "@/app/components/Modal/BaseModal";
 import {CoreConstants} from "@/app/constants";
-import {formatNumberForDisplay} from "@/app/services/data/dataIntegrityService";
+import {formatNegativePoints, formatNumberForDisplay} from "@/app/services/data/dataIntegrityService";
 
 /**
  * Lists trades as a table, useful for reporting
@@ -23,20 +23,6 @@ function TradeList({hasAdmin = false}: Readonly<{ hasAdmin?: boolean }>) {
 
 
   //  GENERAL FUNCTIONS
-
-  /**
-   * Displays negative points with bracket instead of negative sign
-   *
-   * @param val number
-   */
-  function formatNegativePoints(val: number) {
-
-    if (val < 0) {
-      return '(' + formatNumberForDisplay(Math.abs(val)) + ')'
-    }
-
-    return val
-  }
 
   /**
    * Changes the current page and fetches more trades

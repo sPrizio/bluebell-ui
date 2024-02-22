@@ -130,6 +130,14 @@ function BaseCard(
               className={styles[`${baseClass}__header-container`] + ' ' + (hasBorder ? styles[`${baseClass}__header-container--has-border`] : '')}>
               <div className={styles[`${baseClass}__header-item`] + ' ' + styles[`${baseClass}__header`]}>
                 {title}
+                {
+                  subtitle && subtitle.length > 0 ?
+                    <>
+                      <br/>
+                      <span className={styles[`${baseClass}__sub-header`]}>{subtitle}</span>
+                    </>
+                    : null
+                }
               </div>
               <div className={styles[`${baseClass}__header-item`] + ' ' + styles[`${baseClass}__controls`]}>
                 {mainControls}
