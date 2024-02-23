@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import styles from "@/app/components/Navigation/menu/SideNavMenuItem.module.scss";
+import styles from "@/app/components/Navigation/Navbar/NavBarItem.module.scss";
 import Link from "next/link";
 
 /**
@@ -13,7 +13,7 @@ import Link from "next/link";
  * @author Stephen Prizio
  * @version 0.0.1
  */
-function SideNavMenuItem(
+function NavBarItem(
   {
     route = '',
     label = '',
@@ -26,9 +26,10 @@ function SideNavMenuItem(
     active: boolean,
     icon: ReactNode,
     handler: Function
-  }>) {
+  }>
+) {
 
-  const baseClass = "side-nav-menu-item"
+  const baseClass = "nav-bar-item"
 
 
   //  RENDER
@@ -36,11 +37,6 @@ function SideNavMenuItem(
   return (
     <Link href={route} className={styles[`${baseClass}__reset-anchor`]} onClick={() => handler(route)}>
       <div className={styles[baseClass] + ' ' + (active ? styles[`${baseClass}--active`] : '')}>
-        <div className={styles[`${baseClass}__item`] + ' - ' + styles[`${baseClass}__icon`]}>
-          <div className={styles[`${baseClass}__icon-wrapper`]}>
-            {icon}
-          </div>
-        </div>
         <div className={styles[`${baseClass}__item`] + ' - ' + styles[`${baseClass}__text`]}>
           <div className={styles[`${baseClass}__content`]}>
             <span>{label}</span>
@@ -51,4 +47,4 @@ function SideNavMenuItem(
   )
 }
 
-export default SideNavMenuItem;
+export default NavBarItem;

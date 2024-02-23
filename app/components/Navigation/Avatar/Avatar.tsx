@@ -1,4 +1,4 @@
-import styles from "@/app/components/Navigation/avatar/Avatar.module.scss";
+import styles from "@/app/components/Navigation/Avatar/Avatar.module.scss";
 import Image from "next/image";
 import avatar from '@/app/assets/images/avatars/male.png';
 
