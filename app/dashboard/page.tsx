@@ -3,6 +3,7 @@
 import styles from './layout.module.scss'
 import React, {useEffect, useState} from "react";
 import BaseCard from "@/app/components/Card/BaseCard";
+import AccountBalance from "@/app/components/Account/AccountBalance";
 
 /**
  * The dashboard page
@@ -27,12 +28,14 @@ export default function Dashboard() {
       <div className={styles[`${baseClass}__page-row`]}>
         <div className={styles[`${baseClass}__page-column`]}>
           <BaseCard
-            title={'Account'}
+            title={'Balance'}
+            subtitle={'CMC Markets MT4 CFD'}
             hasBorder={false}
             hasOverflow={false}
-            content={[<div key={0}>Account Balance with Delta Card</div>]}
+            content={[<AccountBalance key={0} />]}
           />
         </div>
+        <div className={styles[`${baseClass}__break`]}/>
         <div className={styles[`${baseClass}__page-column`]}>
           <BaseCard
             title={'Equity'}
@@ -51,6 +54,7 @@ export default function Dashboard() {
             content={[<div key={0}>Market News for Today</div>]}
           />
         </div>
+        <div className={styles[`${baseClass}__break`]}/>
         <div className={styles[`${baseClass}__page-column`]}>
           <BaseCard
             title={'Trade Log'}

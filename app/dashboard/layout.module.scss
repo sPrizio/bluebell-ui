@@ -8,25 +8,42 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
+    flex-wrap: wrap;
 
     &:not(:first-child) {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
 
     &:not(:last-child) {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
   }
 
   &__page-column {
     flex: 1;
 
-    &:not(:first-child) {
-      margin-left: 12px;
+    @include mq-medium-up {
+      &:not(:first-child) {
+        margin-left: 2rem;
+      }
+
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
     }
 
-    &:not(:last-child) {
-      margin-right: 12px;
+    @include mq-medium-down {
+      &:not(:first-child) {
+        margin-top: 1rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
     }
+  }
+
+  &__break {
+    @include break;
   }
 }

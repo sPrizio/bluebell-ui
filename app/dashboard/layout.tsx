@@ -1,5 +1,5 @@
 import {MdDashboard} from "react-icons/md";
-import PageHeaderSection from "@/app/components/Section/page/header/PageHeaderSection";
+import PageHeaderSection from "@/app/components/Section/Header/PageHeaderSection";
 import React from "react";
 import styles from './layout.module.scss'
 

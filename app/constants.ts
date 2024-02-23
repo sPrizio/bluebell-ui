@@ -74,6 +74,8 @@ export const CoreConstants = {
         Black: '#000000',
         White: '#FFFFFF',
         ColorPrimary: '#0077E4',
+        ColorSecondary: '#B142F5',
+        ColorTertiary: '#2CDAE6',
         ColorSuccess: '#10D096',
         ColorDanger: '#FF316A',
     },
