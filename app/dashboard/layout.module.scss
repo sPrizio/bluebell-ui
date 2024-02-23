@@ -1,0 +1,32 @@
+@import "app/variables.module";
+@import "app/mixins.module";
+
+.dashboard-page {
+  &__page-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+
+    &:not(:first-child) {
+      margin-top: 1.5rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &__page-column {
+    flex: 1;
+
+    &:not(:first-child) {
+      margin-left: 12px;
+    }
+
+    &:not(:last-child) {
+      margin-right: 12px;
+    }
+  }
+}

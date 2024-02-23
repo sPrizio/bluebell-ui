@@ -9,6 +9,7 @@ import MainLogo from "@/app/components/Navigation/logo/MainLogo";
 import Avatar from "@/app/components/Navigation/avatar/Avatar";
 import UserMenu from "@/app/components/Navigation/menu/UserMenu";
 import {usePathname} from "next/navigation";
+import Link from "next/link";
 
 /**
  * The top-page navigation component
@@ -44,7 +45,9 @@ function NavBar() {
       <div className={styles[`${baseClass}__container`]}>
         <div className={styles[`${baseClass}__items`] + ' ' + styles[`${baseClass}__items--left`]}>
           <div className={styles[`${baseClass}__item`] + ' ' + styles[`${baseClass}__item--brand`]}>
-            <MainLogo />
+            <Link href={'/dashboard'}>
+              <MainLogo />
+            </Link>
           </div>
           <div className={styles[`${baseClass}__item`]}>
             <NavBarItem route={'/trades'} label={'Trades'} active={'/trades' === currentTab}

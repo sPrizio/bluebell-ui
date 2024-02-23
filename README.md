@@ -21,6 +21,5 @@ manually added to the following files:
 - Dashboard
 - Contact us & Report Issue Pages
 - 400 & 500 error pages
-- global loader between pages
 - SCSS refactor (variable reference cleanup, restructure nesting)
 - Mobile re-haul when time allows (will start tracking tasks in git)

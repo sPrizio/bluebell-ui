@@ -1,40 +1,78 @@
 'use client'
 
+import styles from './layout.module.scss'
+import React, {useEffect, useState} from "react";
 import BaseCard from "@/app/components/Card/BaseCard";
-import {useEffect, useState} from "react";
 
+/**
+ * The dashboard page
+ *
+ * @author Stephen Prizio
+ * @version 0.0.1
+ */
 export default function Dashboard() {
 
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+  const baseClass = "dashboard-page"
 
-    useEffect(() => {
-    }, [])
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  useEffect(() => {
+  }, [])
 
 
-    //  RENDER
+  //  RENDER
 
-    return (
-        <div className="">
-            <br/>
-            {/*<SimpleButton variant={"primary"} text={'Primary'}  />
-            <br />
-            <SimpleButton variant={"secondary"} text={'Secondary'}  />
-            <br />
-            <SimpleButton variant={"tertiary"} text={'Tertiary'}  />
-            <br />
-            <SimpleButton variant={"secondary"} text={'Primary'} loading={true}  />
-            <br />
-            <SimpleButton variant={"primary"} text={'Primary'} plain={true}  />
-            <br />
-            <SimpleButton variant={"secondary"} text={'Secondary (Active)'} plain={true} active={true}  />
-            <br />*/}
-            <div className="container">
-                <BaseCard
-                    hasBorder={false}
-                    content={[<p key={0}>This is a test</p>, <p key={1}>This is another test</p>]}
-                />
-            </div>
+  return (
+    <div className={styles[baseClass]}>
+      <div className={styles[`${baseClass}__page-row`]}>
+        <div className={styles[`${baseClass}__page-column`]}>
+          <BaseCard
+            title={'Account'}
+            hasBorder={false}
+            hasOverflow={false}
+            content={[<div key={0}>Account Balance with Delta Card</div>]}
+          />
         </div>
-    )
+        <div className={styles[`${baseClass}__page-column`]}>
+          <BaseCard
+            title={'Equity'}
+            hasBorder={false}
+            hasOverflow={false}
+            content={[<div key={0}>Account Equity Growth Chart</div>]}
+          />
+        </div>
+      </div>
+      <div className={styles[`${baseClass}__page-row`]}>
+        <div className={styles[`${baseClass}__page-column`]}>
+          <BaseCard
+            title={'Thursday, February 22nd'}
+            hasBorder={false}
+            hasOverflow={false}
+            content={[<div key={0}>Market News for Today</div>]}
+          />
+        </div>
+        <div className={styles[`${baseClass}__page-column`]}>
+          <BaseCard
+            title={'Trade Log'}
+            subtitle={'Last 6 trading sessions'}
+            hasBorder={false}
+            hasOverflow={false}
+            content={[<div key={0}>Last 5 or 6 days</div>]}
+          />
+        </div>
+      </div>
+      <div className={styles[`${baseClass}__page-row`]}>
+        <div className={styles[`${baseClass}__page-column`]}>
+          <BaseCard
+            title={'Activity'}
+            subtitle={'A look at your profits, withdrawals & deposits'}
+            hasBorder={false}
+            hasOverflow={false}
+            content={[<div key={0}>Chart that shows trade profit, withdrawals & deposits per month</div>]}
+          />
+        </div>
+      </div>
+    </div>
+  )
 }
 
