@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '@/app/components/Trade/History/TradeHistory.module.scss'
+import styles from './TradeHistory.module.scss'
 import TradeHistorySummary from "@/app/components/Trade/History/TradeHistorySummary";
 import TradeHistoryChart from "@/app/components/Chart/Trade/TradeHistoryChart";
 

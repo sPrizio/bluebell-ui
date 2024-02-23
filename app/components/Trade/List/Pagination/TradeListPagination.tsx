@@ -1,4 +1,4 @@
-import styles from '@/app/components/Trade/List/Pagination/TradeListPagination.module.scss'
+import styles from './TradeListPagination.module.scss'
 import React from "react";
 
 /**

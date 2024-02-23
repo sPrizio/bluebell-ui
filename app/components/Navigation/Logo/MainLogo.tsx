@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/app/components/Navigation/Logo/MainLogo.module.scss";
+import styles from "./MainLogo.module.scss";
 import Image from "next/image";
 import brand from '@/app/assets/images/brand/bluebell/brand_main.png';
 

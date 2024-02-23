@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import styles from "@/app/components/Section/Header/PageHeaderSection.module.scss";
+import styles from "./PageHeaderSection.module.scss";
 
 /**
  * Defines the page Header and top section

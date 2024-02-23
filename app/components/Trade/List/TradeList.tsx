@@ -1,4 +1,4 @@
-import styles from '@/app/components/Trade/List/TradeList.module.scss'
+import styles from './TradeList.module.scss'
 import React, {useState} from "react";
 import moment from "moment";
 import TradeListPagination from "@/app/components/Trade/List/Pagination/TradeListPagination";

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/app/components/Loader/PageLoader.module.scss";
+import styles from "./PageLoader.module.scss";
 
 /**
  * A full-size page loader used for navigation

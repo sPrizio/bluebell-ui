@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/app/components/Footer/Footer.module.scss";
+import styles from "./Footer.module.scss";
 
 /**
  * The global footer component

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '@/app/components/Chart/Trade/TradeHistoryChart.module.scss'
+import styles from './TradeHistoryChart.module.scss'
 import {Area, AreaChart, CartesianGrid, ResponsiveContainer} from "recharts";
 import {CoreConstants} from "@/app/constants";
 

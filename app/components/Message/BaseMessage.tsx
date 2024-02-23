@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '@/app/components/Message/BaseMessage.module.scss'
+import styles from './BaseMessage.module.scss'
 import {LuInfo} from "react-icons/lu";
 import {VscError} from "react-icons/vsc";
 import {AiOutlineWarning} from "react-icons/ai";

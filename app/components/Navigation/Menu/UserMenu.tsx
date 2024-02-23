@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/app/components/Navigation/Menu/UserMenu.module.scss";
+import styles from "./UserMenu.module.scss";
 import {UserMenuOption} from "@/app/types/appTypes";
 import {resolveIcon} from "@/app/services/resolver/iconResolverService";
 import Link from "next/link";

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '@/app/components/Modal/BaseModal.module.scss'
+import styles from './BaseModal.module.scss'
 import SimpleButton from "@/app/components/Button/SimpleButton";
 import {CgClose} from "react-icons/cg";
 

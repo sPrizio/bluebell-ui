@@ -1,4 +1,4 @@
-import styles from '@/app/components/Modal/Trade/TradeImportModal.module.scss'
+import styles from './TradeImportModal.module.scss'
 import BaseModal from "@/app/components/Modal/BaseModal";
 import React, {ChangeEvent, useState} from "react";
 import {delay} from "@/app/services/util/utilService";

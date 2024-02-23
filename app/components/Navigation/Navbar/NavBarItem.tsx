@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import styles from "@/app/components/Navigation/Navbar/NavBarItem.module.scss";
+import styles from "./NavBarItem.module.scss";
 import Link from "next/link";
 
 /**

@@ -1,4 +1,4 @@
-import styles from '@/app/components/Select/SimpleSelect.module.scss'
+import styles from './SimpleSelect.module.scss'
 import React, {useState} from "react";
 import {IoChevronDown} from "react-icons/io5";
 import {SimpleOption} from "@/app/types/appTypes";

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '@/app/components/DatePicker/BluebellDatePicker.module.scss'
+import styles from './BluebellDatePicker.module.scss'
 import DatePicker from "react-datepicker";
 
 /**

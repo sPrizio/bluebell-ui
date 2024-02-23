@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import styles from "@/app/components/Input/File/FileInput.module.scss";
+import styles from "./FileInput.module.scss";
 import SimpleInput from "@/app/components/Input/SimpleInput";
 import {BiImport} from "react-icons/bi";
 

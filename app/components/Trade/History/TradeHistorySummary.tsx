@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '@/app/components/Trade/History/TradeHistorySummary.module.scss'
+import styles from './TradeHistorySummary.module.scss'
 import {formatNegativePoints, formatNumberForDisplay} from "@/app/services/data/dataIntegrityService";
 
 /**

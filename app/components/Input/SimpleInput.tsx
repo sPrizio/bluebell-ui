@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import styles from "@/app/components/Input/SimpleInput.module.scss";
+import styles from "./SimpleInput.module.scss";
 
 /**
  * Basic universal input

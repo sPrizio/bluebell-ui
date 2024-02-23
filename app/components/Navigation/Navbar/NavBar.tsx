@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useState} from "react";
-import styles from "@/app/components/Navigation/Navbar/NavBar.module.scss";
+import styles from "./NavBar.module.scss";
 import NavBarItem from "@/app/components/Navigation/Navbar/NavBarItem";
 import {resolveIcon} from "@/app/services/resolver/iconResolverService";
 import {RxHamburgerMenu} from "react-icons/rx";
