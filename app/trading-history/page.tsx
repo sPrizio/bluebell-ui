@@ -137,11 +137,11 @@ export default function TradingHistory() {
       <div className={styles[`${baseClass}__page-row`]}>
         <div className={styles[`${baseClass}__history-wrapper`]}>
           <BaseCard
-            subtitle={'Monday'}
+            subtitle={'Wednesday'}
             hasBorder={false}
             hasOverflow={true}
-            title={'February 19th, 2024'}
-            content={[<TradeHistory key={0} />]}
+            title={'February 21st, 2024'}
+            content={[<TradeHistory key={0}/>]}
           />
         </div>
       </div>
@@ -152,18 +152,18 @@ export default function TradingHistory() {
             hasBorder={false}
             hasOverflow={true}
             title={'February 20th, 2024'}
-            content={[<TradeHistory key={0} />]}
+            content={[<TradeHistory key={0}/>]}
           />
         </div>
       </div>
       <div className={styles[`${baseClass}__page-row`]}>
         <div className={styles[`${baseClass}__history-wrapper`]}>
           <BaseCard
-            subtitle={'Wednesday'}
+            subtitle={'Monday'}
             hasBorder={false}
             hasOverflow={true}
-            title={'February 21st, 2024'}
-            content={[<TradeHistory key={0} />]}
+            title={'February 19th, 2024'}
+            content={[<TradeHistory key={0}/>]}
           />
         </div>
       </div>

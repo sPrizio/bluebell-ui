@@ -14,3 +14,13 @@ In addition, due to some programming limitiations, any theme changes must be
 manually added to the following files:
 - bluebell-datepicker.css
 - constants.CssConstants.ts
+
+---
+
+### To Do
+- Dashboard
+- Contact us & Report Issue Pages
+- 400 & 500 error pages
+- global loader between pages
+- SCSS refactor (variable reference cleanup, restructure nesting)
+- Mobile re-haul when time allows (will start tracking tasks in git)

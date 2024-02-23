@@ -8,6 +8,7 @@ import {RxHamburgerMenu} from "react-icons/rx";
 import MainLogo from "@/app/components/Navigation/logo/MainLogo";
 import Avatar from "@/app/components/Navigation/avatar/Avatar";
 import UserMenu from "@/app/components/Navigation/menu/UserMenu";
+import {usePathname} from "next/navigation";
 
 /**
  * The top-page navigation component
@@ -19,7 +20,7 @@ function NavBar() {
 
   const baseClass = "nav-bar"
 
-  const [currentTab, setCurrentTab] = useState('/trades')
+  const [currentTab, setCurrentTab] = useState(usePathname())
   const [userMenuActive, setUserMenuActive] = useState(false)
 
 
@@ -32,6 +33,7 @@ function NavBar() {
    */
   function handleClick(val: string) {
     setCurrentTab(val)
+    setUserMenuActive(false)
   }
 
 

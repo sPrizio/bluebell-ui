@@ -76,20 +76,6 @@ export default function Trades() {
           content={[<TradeList hasAdmin={false} key={0}/>]}
           controls={[<SimpleSelect options={quickPicks} key={0} handler={() => null} val={''} />]}
         />
-        <br />
-        When refreshing the page, the nav selection is wrong
-        <br />
-        Dashboard
-        <br />
-        SCSS refactor (variable reference cleanup, restructure nesting)
-        <br />
-        Contact us & Report Issue Pages
-        <br />
-        global loader between pages
-        <br />
-        update nav bar when clicking on user menu
-        <br />
-        Mobile re-haul when time allows (will start tracking tasks in git)
       </div>
       <TradeImportModal active={importModalActive} closeHandler={() => setImportModalActive(false)} />
     </>
