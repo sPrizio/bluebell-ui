@@ -124,6 +124,15 @@
   padding: 0 $container-padding;
 }
 
+@mixin break {
+  @include mq-medium-up {
+    display: none;
+  }
+
+  flex-basis: 100%;
+  height: 0;
+}
+
 @mixin loader-animation {
   @keyframes spinner {
     0% {

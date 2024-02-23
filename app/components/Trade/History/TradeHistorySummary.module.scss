@@ -42,12 +42,7 @@
   }
 
   &__break {
-    @include mq-medium-up {
-      display: none;
-    }
-
-    flex-basis: 100%;
-    height: 0;
+    @include break;
 
     &--active {
       display: block;

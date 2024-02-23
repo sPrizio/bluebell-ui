@@ -1,4 +1,4 @@
-import styles from '@/app/components/Modal/trade/TradeImportModal.module.scss'
+import styles from '@/app/components/Modal/Trade/TradeImportModal.module.scss'
 import BaseModal from "@/app/components/Modal/BaseModal";
 import React, {ChangeEvent, useState} from "react";
 import {delay} from "@/app/services/util/utilService";
@@ -100,7 +100,7 @@ function TradeImportModal({active = false, closeHandler}: Readonly<{ active: boo
       <br/>
       <BaseMessage
         title={'Duplicate Trades'}
-        text={'Don\'t worry about duplicate trades. The system will automatically handle those. Previous trade information will be overwritten should there have been any changes.'}
+        text={'Don\'t worry about duplicate trades. The system will automatically handle those. Previous Trade information will be overwritten should there have been any changes.'}
         type={"info"}
       />
     </section>

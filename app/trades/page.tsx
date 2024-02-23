@@ -2,13 +2,13 @@
 
 import BaseCard from "@/app/components/Card/BaseCard";
 import React, {useEffect, useState} from "react";
-import PageHeaderSection from "@/app/components/Section/page/header/PageHeaderSection";
+import PageHeaderSection from "@/app/components/Section/Header/PageHeaderSection";
 import {TbPackageImport} from "react-icons/tb";
 import SimpleButton from "@/app/components/Button/SimpleButton";
 import TradeList from "@/app/components/Trade/List/TradeList";
 import SimpleSelect from "@/app/components/Select/SimpleSelect";
 import {SimpleOption} from "@/app/types/appTypes";
-import TradeImportModal from "@/app/components/Modal/trade/TradeImportModal";
+import TradeImportModal from "@/app/components/Modal/Trade/TradeImportModal";
 import {resolveIcon} from "@/app/services/resolver/iconResolverService";
 
 /**

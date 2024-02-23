@@ -113,7 +113,7 @@
   }
 
   &__header {
-    flex: 0.75;
+    flex: 1;
     color: $color-ui-dark-card-header;
 
     @include header-sizing(6, 'mobile');

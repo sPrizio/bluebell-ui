@@ -1,5 +1,5 @@
 import styles from './layout.module.scss'
-import PageHeaderSection from "@/app/components/Section/page/header/PageHeaderSection";
+import PageHeaderSection from "@/app/components/Section/Header/PageHeaderSection";
 import React from "react";
 import {GoHistory} from "react-icons/go";
 

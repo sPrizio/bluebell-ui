@@ -1,8 +1,14 @@
 import React from "react";
 import styles from '@/app/components/Trade/History/TradeHistory.module.scss'
 import TradeHistorySummary from "@/app/components/Trade/History/TradeHistorySummary";
-import TradeHistoryChart from "@/app/components/Chart/TradeHistoryChart";
+import TradeHistoryChart from "@/app/components/Chart/Trade/TradeHistoryChart";
 
+/**
+ * The trade history component, used viewing trade records (summaries of trade sessions)
+ *
+ * @author Stephen Prizio
+ * @version 0.0.1
+ */
 function TradeHistory() {
 
   const baseClass = "trade-history"

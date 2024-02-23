@@ -1,8 +1,8 @@
 import React, {ReactNode} from "react";
-import styles from "@/app/components/Section/page/header/PageHeaderSection.module.scss";
+import styles from "@/app/components/Section/Header/PageHeaderSection.module.scss";
 
 /**
- * Defines the page header and top section
+ * Defines the page Header and top section
  *
  * @param icon page icon
  * @param title page title
