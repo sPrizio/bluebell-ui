@@ -8,8 +8,8 @@ import SimpleButton from "@/app/components/Button/SimpleButton";
 import TradeList from "@/app/components/Trade/List/TradeList";
 import SimpleSelect from "@/app/components/Select/SimpleSelect";
 import {SimpleOption} from "@/app/types/appTypes";
-import TradeImportModal from "@/app/components/Modal/Trade/TradeImportModal";
 import {resolveIcon} from "@/app/services/resolver/iconResolverService";
+import TradeImportModal from "@/app/components/Modal/trade/TradeImportModal";
 
 /**
  * The trades page, showing all trades and allowing the user to upload new ones into the system

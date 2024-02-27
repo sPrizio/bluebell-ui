@@ -4,6 +4,7 @@ import styles from './layout.module.scss'
 import React, {useEffect, useState} from "react";
 import BaseCard from "@/app/components/Card/BaseCard";
 import AccountBalance from "@/app/components/Account/AccountBalance";
+import AccountEquityChart from "@/app/components/Chart/Account/AccountEquityChart";
 
 /**
  * The dashboard page
@@ -39,9 +40,10 @@ export default function Dashboard() {
         <div className={styles[`${baseClass}__page-column`]}>
           <BaseCard
             title={'Equity'}
+            subtitle={'Last 6 Months'}
             hasBorder={false}
             hasOverflow={false}
-            content={[<div key={0}>Account Equity Growth Chart</div>]}
+            content={[<AccountEquityChart key={0} />]}
           />
         </div>
       </div>

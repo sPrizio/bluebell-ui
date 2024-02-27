@@ -19,7 +19,7 @@ export default function DashboardLayout({children}: {children: React.ReactNode})
   return (
     <div className={styles[baseClass]}>
       <PageHeaderSection
-        title={'Hello, Stephen'}
+        title={'Hello, Test User'}
         controls={[]}
         icon={<MdDashboard/>}
       />

@@ -28,7 +28,16 @@ export function emptyObject(object: any) {
  *
  * @param val number to format
  */
-export function formatNumberForDisplay(val: number) {
+export function formatNumberForDisplay(val: number | string) {
+
+    if (typeof val === 'string') {
+        try {
+            return Number(val).toLocaleString()
+        } catch (e) {
+            return 'DATA ERROR!'
+        }
+    }
+
     return val.toLocaleString()
 }
 

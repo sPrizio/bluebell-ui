@@ -78,5 +78,7 @@ export const CoreConstants = {
         ColorTertiary: '#2CDAE6',
         ColorSuccess: '#10D096',
         ColorDanger: '#FF316A',
+        ColorLightGrey: 'rgb(239, 239, 247)',
+        ColorDisplayGrey: 'rgb(186, 184, 195)'
     },
 }
