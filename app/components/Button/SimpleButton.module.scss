@@ -150,6 +150,14 @@
     &.simple-button--plain {
       color: $color-primary;
 
+      &.simple-button--loading {
+        .simple-button--loader {
+          &::before {
+            border-bottom-color: $color-primary;
+          }
+        }
+      }
+
       &:disabled {
         color: $color-font-disabled;
         pointer-events: none;
@@ -178,6 +186,14 @@
 
     &.simple-button--plain {
       color: $color-secondary;
+
+      &.simple-button--loading {
+        .simple-button--loader {
+          &::before {
+            border-bottom-color: $color-secondary;
+          }
+        }
+      }
 
       &:after {
         background-color: $color-secondary;

@@ -24,3 +24,12 @@ export function getDomain(appendVal: string): string {
 export function getTransactionDomain(): string {
     return getDomain('/transaction')
 }
+
+/**
+ * Gets the news url
+ *
+ * @returns {string} url
+ */
+export function getNewsDomain(): string {
+    return getDomain('/news')
+}

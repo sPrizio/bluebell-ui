@@ -3,8 +3,8 @@ import './assets/css/normalize.css'
 import 'react-datepicker/dist/react-datepicker.min.css'
 import './bluebell-datepicker.css'
 import styles from './layout.module.scss'
-import NavBar from "@/app/components/Navigation/Navbar/NavBar";
 import Footer from "@/app/components/Footer/Footer";
+import NavBar from "@/app/components/Navigation/navbar/NavBar";
 
 export const metadata: Metadata = {
   title: 'Flowerpot',

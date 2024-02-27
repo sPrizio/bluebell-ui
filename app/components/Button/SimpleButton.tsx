@@ -78,8 +78,8 @@ function SimpleButton(
 
     return (
         <div className={computeClass(variant, inverted, plain, active)} onClick={handler}>
-            {icon && iconPosition === 'left' ? icon : null}
-            {icon && iconPosition === 'center' ? icon : null}
+            {!loading && icon && iconPosition === 'left' ? icon : null}
+            {!loading && icon && iconPosition === 'center' ? icon : null}
             {
                 text && text.length > 0 ?
                     <button className={styles[`${baseClass}__inner`]} disabled={disabled}>
@@ -88,7 +88,7 @@ function SimpleButton(
                     :
                     null
             }
-            {icon && iconPosition === 'right' ? icon : null}
+            {!loading && icon && iconPosition === 'right' ? icon : null}
         </div>
     );
 }

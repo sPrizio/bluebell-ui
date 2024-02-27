@@ -6,6 +6,7 @@ import styles from './layout.module.scss'
 /**
  * The default layout for the dashboard page
  *
+ * @param children react components
  * @author Stephen Prizio
  * @version 0.0.1
  */
