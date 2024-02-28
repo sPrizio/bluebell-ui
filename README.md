@@ -19,7 +19,6 @@ manually added to the following files:
 
 ### To Do
 - Dashboard
-- Market News Page
 - Contact us & Report Issue Pages
 - 400 & 500 error pages
 - SCSS refactor (variable reference cleanup, restructure nesting)

@@ -3,9 +3,16 @@ import styles from './MarketNews.module.scss'
 import {News} from "@/app/types/apiTypes";
 import moment from "moment";
 import {CoreConstants} from "@/app/constants";
-import {getFlagForCode} from "@/app/services/locale/localeService";
+import MarketNewsSlot from "@/app/components/News/MarketNewsSlot";
 
-export default function MarketNews({news}: {news: News}) {
+/**
+ * Renders market news as a card component
+ *
+ * @param news market news
+ * @author Stephen Prizio
+ * @version 0.0.1
+ */
+export default function MarketNews({news}: Readonly<{ news: Array<News> }>) {
 
   const baseClass = "news"
 
@@ -14,38 +21,44 @@ export default function MarketNews({news}: {news: News}) {
 
   return (
     <div className={styles[baseClass]}>
-      {
-        news.slots && news.slots.length > 0 && news.slots.map((item, key) => {
-          return (
-            <div key={key} className={styles[`${baseClass}__row`]}>
-              <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__time-column`]}>
-                {moment(item.time, CoreConstants.DateTime.ISOTimeFormat).format(CoreConstants.DateTime.ISOShortTimeFormat)}
-              </div>
-              <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__entry-column`]}>
+      <table className={styles[`${baseClass}__table`]}>
+        <thead>
+        <tr>
+          <th className={styles[`${baseClass}__label`]}>Time</th>
+          <th className={styles[`${baseClass}__label`]}>Event</th>
+          <th className={styles[`${baseClass}__symbol`]}>Country</th>
+          <th className={styles[`${baseClass}__value`]}>Severity</th>
+          <th className={styles[`${baseClass}__value`]}>Forecast</th>
+          <th className={styles[`${baseClass}__value`]}>Previous</th>
+        </tr>
+        </thead>
+        <tbody>
+        {
+          news && news.length > 0 && news.map((item, key) => {
+            return (
+              <>
+                <tr key={key}>
+                  <td className={styles[`${baseClass}__date-row`]} colSpan={6}>
+                    {moment(item.date, CoreConstants.DateTime.ISODateFormat).format(CoreConstants.DateTime.ISOShortMonthWeekDayFormat)}
+                  </td>
+                </tr>
                 {
-                  item.entries && item.entries.length > 0 && item.entries.map((subitem, subkey) => {
+                  item.slots && item.slots.length > 0 && item.slots.map((slotItem, slotKey) => {
                     return (
-                      <div key={subkey} className={styles[`${baseClass}__entry-content`]}>
-                        <div className={styles[`${baseClass}__entry-content-item`] + ' ' + styles[`${baseClass}__country`]}>
-                          <div className={styles[`${baseClass}__country-wrapper`]}>
-                            {getFlagForCode(subitem.country)}
-                          </div>
-                        </div>
-                        <div className={styles[`${baseClass}__entry-content-item`] + ' ' + styles[`${baseClass}__level`]}>
-                          {subitem.severityLevel}
-                        </div>
-                        <div className={styles[`${baseClass}__entry-content-item`]}>
-                          {subitem.content}
-                        </div>
-                      </div>
+                      <MarketNewsSlot
+                        slot={slotItem}
+                        key={slotKey}
+                        isPast={item.past}
+                      />
                     )
                   })
                 }
-              </div>
-            </div>
-          )
-        })
-      }
+              </>
+            )
+          })
+        }
+        </tbody>
+      </table>
     </div>
   )
 }

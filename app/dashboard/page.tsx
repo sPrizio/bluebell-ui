@@ -40,7 +40,7 @@ export default function Dashboard() {
         <div className={styles[`${baseClass}__page-column`]}>
           <BaseCard
             title={'Equity'}
-            subtitle={'Last 6 Months'}
+            subtitle={'Last 6 months'}
             hasBorder={false}
             hasOverflow={false}
             content={[<AccountEquityChart key={0} />]}
@@ -51,9 +51,10 @@ export default function Dashboard() {
         <div className={styles[`${baseClass}__page-column`]}>
           <BaseCard
             title={'Thursday, February 22nd'}
+            subtitle={'Upcoming News & Events'}
             hasBorder={false}
             hasOverflow={false}
-            content={[<div key={0}>Market News for Today</div>]}
+            content={[<div key={0}>Market News for Today, showing only the given locales</div>]}
           />
         </div>
         <div className={styles[`${baseClass}__break`]}/>
@@ -71,7 +72,7 @@ export default function Dashboard() {
         <div className={styles[`${baseClass}__page-column`]}>
           <BaseCard
             title={'Activity'}
-            subtitle={'A look at your profits, withdrawals & deposits'}
+            subtitle={'A look at your account activity'}
             hasBorder={false}
             hasOverflow={false}
             content={[<div key={0}>Chart that shows trade profit, withdrawals & deposits per month</div>]}

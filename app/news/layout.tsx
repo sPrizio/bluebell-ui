@@ -49,7 +49,7 @@ export default function MarketNewsLayout({children}: { children: React.ReactNode
       if (res.ok) {
         const data = await res.json()
         if (data.length > 0) {
-          console.log('data good')
+          window.location.reload()
         }
       }
     } catch (e) {

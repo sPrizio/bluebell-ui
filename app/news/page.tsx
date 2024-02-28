@@ -60,24 +60,7 @@ export default function News() {
   return (
     <div className={styles[`${baseClass}__content`]}>
       {isLoading ? <PageLoader /> : null}
-      {
-        news && news.length > 0 && news.map((item, key) => {
-          return (
-            <div key={key} className={styles[`${baseClass}__entry`]}>
-              <BaseCard
-                hasBorder={false}
-                title={moment(item.date, CoreConstants.DateTime.ISODateFormat).format(CoreConstants.DateTime.ISOMonthWeekDayFormat)}
-                content={[<MarketNews key={0} news={item} />]}
-              />
-            </div>
-          )
-        })
-      }
-      {
-        !news || news.length === 0 ?
-          <BaseCard hasError={true} content={[]} />
-          : null
-      }
+      <MarketNews news={news} />
     </div>
   )
 }

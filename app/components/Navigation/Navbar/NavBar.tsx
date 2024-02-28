@@ -45,7 +45,7 @@ function NavBar() {
       <div className={styles[`${baseClass}__container`]}>
         <div className={styles[`${baseClass}__items`] + ' ' + styles[`${baseClass}__items--left`]}>
           <div className={styles[`${baseClass}__item`] + ' ' + styles[`${baseClass}__item--brand`]}>
-            <Link href={'/dashboard'}>
+            <Link href={'/dashboard'} onClick={() => handleClick('/dashboard')}>
               <MainLogo />
             </Link>
           </div>
