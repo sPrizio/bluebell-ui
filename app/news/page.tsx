@@ -5,7 +5,6 @@ import styles from './layout.module.scss'
 import {CoreConstants} from "@/app/constants";
 import moment from "moment";
 import {News, StandardJsonResponse} from "@/app/types/apiTypes";
-import BaseCard from "@/app/components/Card/BaseCard";
 import PageLoader from "@/app/components/Loader/PageLoader";
 import MarketNews from "@/app/components/News/MarketNews";
 
@@ -37,7 +36,9 @@ export default function News() {
       const res = await fetch(
         CoreConstants.ApiUrls.News.GetInterval
           .replace('{start}', moment().startOf('week').add(1, 'days').format(CoreConstants.DateTime.ISODateFormat))
-          .replace('{end}', moment().startOf('week').add(6, 'days').format(CoreConstants.DateTime.ISODateFormat)),
+          .replace('{end}', moment().startOf('week').add(6, 'days').format(CoreConstants.DateTime.ISODateFormat))
+          + '&locales=all_countries'
+        ,
         {method: 'GET'}
       )
 

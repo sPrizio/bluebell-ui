@@ -16,7 +16,7 @@ import {BsShieldExclamation} from "react-icons/bs";
  * @author Stephen Prizio
  * @version 0.0.1
  */
-export default function MarketNewsSlot({slot, isPast = false}: {slot: NewsSlot, isPast?: boolean}) {
+export default function MarketNewsSlot({slot, isPast = false, showOnlyImportant = false}: {slot: NewsSlot, isPast?: boolean, showOnlyImportant?: boolean}) {
 
   const baseClass = "news"
 
@@ -60,12 +60,18 @@ export default function MarketNewsSlot({slot, isPast = false}: {slot: NewsSlot, 
               {computeSeverity(item.severityLevel)}
             </div>
           </td>
-          <td className={styles[`${baseClass}__value`]}>
-            {item.forecast}
-          </td>
-          <td className={styles[`${baseClass}__value`]}>
-            {item.previous}
-          </td>
+          {
+            !showOnlyImportant ?
+              <>
+                <td className={styles[`${baseClass}__value`]}>
+                  {item.forecast}
+                </td>
+                <td className={styles[`${baseClass}__value`]}>
+                  {item.previous}
+                </td>
+              </>
+              : null
+          }
         </tr>
       )
     })

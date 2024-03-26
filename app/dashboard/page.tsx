@@ -5,6 +5,10 @@ import React, {useEffect, useState} from "react";
 import BaseCard from "@/app/components/Card/BaseCard";
 import AccountBalance from "@/app/components/Account/AccountBalance";
 import AccountEquityChart from "@/app/components/Chart/Account/AccountEquityChart";
+import {CoreConstants} from "@/app/constants";
+import {News, StandardJsonResponse} from "@/app/types/apiTypes";
+import moment from "moment";
+import MarketNews from "@/app/components/News/MarketNews";
 
 /**
  * The dashboard page
@@ -17,9 +21,44 @@ export default function Dashboard() {
   const baseClass = "dashboard-page"
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [news, setNews] = useState<Array<News>>([])
 
   useEffect(() => {
+    getNews()
   }, [])
+
+
+  //  GENERAL FUNCTIONS
+
+  /**
+   * Obtains this week's news
+   */
+  async function getNews() {
+
+    setIsLoading(true)
+
+    try {
+      const res = await fetch(
+        CoreConstants.ApiUrls.News.GetInterval
+          .replace('{start}', moment().startOf('day').format(CoreConstants.DateTime.ISODateFormat))
+          .replace('{end}', moment().startOf('day').add(1, 'days').format(CoreConstants.DateTime.ISODateFormat))
+          + '&locales=CAN&locales=USD',
+        {method: 'GET'}
+      )
+
+      if (res.ok) {
+        const data: StandardJsonResponse = await res.json()
+        console.log(data)
+        if (data.success) {
+          setNews(data.data)
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    }
+
+    setIsLoading(false)
+  }
 
 
   //  RENDER
@@ -50,11 +89,11 @@ export default function Dashboard() {
       <div className={styles[`${baseClass}__page-row`]}>
         <div className={styles[`${baseClass}__page-column`]}>
           <BaseCard
-            title={'Thursday, February 22nd'}
-            subtitle={'Upcoming News & Events'}
+            title={moment().startOf('day').format(CoreConstants.DateTime.ISOMonthWeekDayFormat)}
+            subtitle={'Today\'s News & Events'}
             hasBorder={false}
             hasOverflow={false}
-            content={[<div key={0}>Market News for Today, showing only the given locales</div>]}
+            content={[<MarketNews key={0} news={news} showOnlyImportant={true} hideDate={true} />]}
           />
         </div>
         <div className={styles[`${baseClass}__break`]}/>
