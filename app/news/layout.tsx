@@ -48,7 +48,7 @@ export default function MarketNewsLayout({children}: { children: React.ReactNode
       const res = await fetch(CoreConstants.ApiUrls.News.Fetch, {method: 'POST'})
       if (res.ok) {
         const data = await res.json()
-        if (data.length > 0) {
+        if (data.success) {
           window.location.reload()
         }
       }
