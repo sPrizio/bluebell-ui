@@ -38,3 +38,14 @@ export type News = {
     slots: Array<NewsSlot>,
     uid: string
 }
+
+
+//  TRADES
+
+export type TradeRecord = {
+    startDate: string,
+    endDate: string,
+    profit: number,
+    points: number,
+    trades: number
+}

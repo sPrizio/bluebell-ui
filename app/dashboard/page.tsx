@@ -9,6 +9,7 @@ import {CoreConstants} from "@/app/constants";
 import {News, StandardJsonResponse} from "@/app/types/apiTypes";
 import moment from "moment";
 import MarketNews from "@/app/components/News/MarketNews";
+import TradeLog from "@/app/components/Trade/Log/TradeLog";
 
 /**
  * The dashboard page
@@ -67,44 +68,46 @@ export default function Dashboard() {
     <div className={styles[baseClass]}>
       <div className={styles[`${baseClass}__page-row`]}>
         <div className={styles[`${baseClass}__page-column`]}>
-          <BaseCard
-            title={'Balance'}
-            subtitle={'CMC Markets MT4 CFD'}
-            hasBorder={false}
-            hasOverflow={false}
-            content={[<AccountBalance key={0} />]}
-          />
+          <div className={styles[`${baseClass}__page-component`]}>
+            <BaseCard
+              title={'Balance'}
+              subtitle={'CMC Markets MT4 CFD'}
+              hasBorder={false}
+              hasOverflow={false}
+              content={[<AccountBalance key={0}/>]}
+            />
+          </div>
+
+          <div className={styles[`${baseClass}__page-component`]}>
+            <BaseCard
+              title={moment().startOf('day').format(CoreConstants.DateTime.ISOMonthWeekDayFormat)}
+              subtitle={'Today\'s News & Events'}
+              hasBorder={false}
+              hasOverflow={false}
+              content={[<MarketNews key={0} news={news} showOnlyImportant={true} hideDate={true}/>]}
+            />
+          </div>
         </div>
         <div className={styles[`${baseClass}__break`]}/>
         <div className={styles[`${baseClass}__page-column`]}>
-          <BaseCard
-            title={'Equity'}
-            subtitle={'Last 6 months'}
-            hasBorder={false}
-            hasOverflow={false}
-            content={[<AccountEquityChart key={0} />]}
-          />
-        </div>
-      </div>
-      <div className={styles[`${baseClass}__page-row`]}>
-        <div className={styles[`${baseClass}__page-column`]}>
-          <BaseCard
-            title={moment().startOf('day').format(CoreConstants.DateTime.ISOMonthWeekDayFormat)}
-            subtitle={'Today\'s News & Events'}
-            hasBorder={false}
-            hasOverflow={false}
-            content={[<MarketNews key={0} news={news} showOnlyImportant={true} hideDate={true} />]}
-          />
-        </div>
-        <div className={styles[`${baseClass}__break`]}/>
-        <div className={styles[`${baseClass}__page-column`]}>
-          <BaseCard
-            title={'Trade Log'}
-            subtitle={'Last 6 trading sessions'}
-            hasBorder={false}
-            hasOverflow={false}
-            content={[<div key={0}>Last 5 or 6 days</div>]}
-          />
+          <div className={styles[`${baseClass}__page-component`]}>
+            <BaseCard
+              title={'Equity'}
+              subtitle={'Last 6 months'}
+              hasBorder={false}
+              hasOverflow={false}
+              content={[<AccountEquityChart key={0}/>]}
+            />
+          </div>
+          <div className={styles[`${baseClass}__page-component`]}>
+            <BaseCard
+              title={'Trade Log'}
+              subtitle={'Last 6 trading sessions'}
+              hasBorder={false}
+              hasOverflow={false}
+              content={[<TradeLog key={0} tradeRecords={[]}/>]}
+            />
+          </div>
         </div>
       </div>
       <div className={styles[`${baseClass}__page-row`]}>
