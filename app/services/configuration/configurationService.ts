@@ -1,3 +1,14 @@
+import {CoreConstants} from "@/app/constants";
+
+/**
+ * Returns the auth header for api calls
+ */
+export function getAuthHeader(): any {
+    const obj : any = {}
+    obj[CoreConstants.ApiCredentials.AuthHeader] = CoreConstants.ApiCredentials.TestUserToken
+    return obj
+}
+
 /**
  * Gets the base api url
  *
@@ -17,19 +28,19 @@ export function getDomain(appendVal: string): string {
 }
 
 /**
- * Gets the transaction url
- *
- * @returns {string} url
- */
-export function getTransactionDomain(): string {
-    return getDomain('/transaction')
-}
-
-/**
  * Gets the news url
  *
  * @returns {string} url
  */
 export function getNewsDomain(): string {
     return getDomain('/news')
+}
+
+/**
+ * Gets the trade url
+ *
+ * @returns {string} url
+ */
+export function getTradeDomain(): string {
+    return getDomain('/trade')
 }

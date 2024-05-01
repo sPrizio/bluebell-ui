@@ -1,11 +1,12 @@
 import styles from './TradeImportModal.module.scss'
 import BaseModal from "@/app/components/Modal/BaseModal";
 import React, {ChangeEvent, useState} from "react";
-import {delay} from "@/app/services/util/utilService";
 import FileInput from "@/app/components/Input/File/FileInput";
 import BaseMessage from "@/app/components/Message/BaseMessage";
 import Link from "next/link";
 import {FaFileImport} from "react-icons/fa6";
+import {CoreConstants} from "@/app/constants";
+import {getAuthHeader} from "@/app/services/configuration/configurationService";
 
 /**
  * Modal for importing trades into the system
@@ -60,15 +61,15 @@ function TradeImportModal({active = false, closeHandler}: Readonly<{ active: boo
         formData.append('file', file);
         formData.append('fileName', file.name);
 
-        await delay(3000)
-        //TODO: hook this up
-        /*await fetch(
-        CoreConstants.ApiUrls.Trade.Upload,
+        await fetch(
+        CoreConstants.ApiUrls.Trade.Upload
+          .replace('{accountNumber}', CoreConstants.ApiCredentials.TestAccountNumber),
           {
+            headers: getAuthHeader(),
             method: 'POST',
             body: formData
           }
-      )*/
+      )
 
         setFile(null)
         window.location.reload()

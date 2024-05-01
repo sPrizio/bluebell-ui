@@ -1,38 +1,36 @@
 import styles from './TradeList.module.scss'
 import React, {useState} from "react";
-import moment from "moment";
+import moment from 'moment-timezone';
 import TradeListPagination from "@/app/components/Trade/List/Pagination/TradeListPagination";
 import SimpleButton from "@/app/components/Button/SimpleButton";
 import {MdDelete} from "react-icons/md";
 import BaseModal from "@/app/components/Modal/BaseModal";
 import {CoreConstants} from "@/app/constants";
 import {formatNegativePoints, formatNumberForDisplay} from "@/app/services/data/dataIntegrityService";
+import {PagedResponse, Trade} from "@/app/types/apiTypes";
+import {TradeType} from "@/app/types/appTypes";
+import {IoArrowDownCircle, IoArrowUpCircle} from "react-icons/io5";
 
 /**
  * Lists trades as a table, useful for reporting
  *
  * @param hasAdmin flag to show admin controls for trades
+ * @param trades paginated trades
+ * @param paginationHandler handler for changing pages
  * @author Stephen Prizio
  * @version 0.0.1
  */
-function TradeList({hasAdmin = false}: Readonly<{ hasAdmin?: boolean }>) {
+function TradeList({hasAdmin = false, trades, paginationHandler}: Readonly<{
+  hasAdmin?: boolean,
+  trades: PagedResponse<Trade> | undefined,
+  paginationHandler: Function
+}>) {
 
   const baseClass = 'trade-list'
-  const [currentPage, setCurrentPage] = useState(0)
   const [adminDeleteActive, setAdminDeleteActive] = useState(false)
 
 
   //  GENERAL FUNCTIONS
-
-  /**
-   * Changes the current page and fetches more trades
-   *
-   * @param val page number
-   */
-  function handlePageChange(val: number) {
-    setCurrentPage(val)
-    //  TODO: fetch more trades based on page number
-  }
 
   /**
    * Toggles the admin delete modal
@@ -43,8 +41,6 @@ function TradeList({hasAdmin = false}: Readonly<{ hasAdmin?: boolean }>) {
 
   /**
    * Formats the given number of seconds into a pretty display string
-   *
-   * @param seconds time in seconds
    */
   function formatTimeElapsed(seconds: number) {
     if (seconds < 60) {
@@ -56,116 +52,133 @@ function TradeList({hasAdmin = false}: Readonly<{ hasAdmin?: boolean }>) {
     }
   }
 
+  /**
+   * Computes the display class for P&L
+   */
+  function computeClass(val: number) {
+
+    if (val > 0) {
+      return styles[`${baseClass}__positive`]
+    } else if (val < 0) {
+      return styles[`${baseClass}__negative`]
+    }
+
+    return styles[`${baseClass}__neutral`]
+  }
+
+  /**
+   * Computes the time elapsed between a {@link Trade}'s open and close (in seconds)
+   */
+  function computeTimeElapsed(trade: Trade) {
+    const start = moment(trade.tradeOpenTime, CoreConstants.DateTime.ISOEasyDateTimeFormat)
+    const end = moment(trade.tradeCloseTime, CoreConstants.DateTime.ISOEasyDateTimeFormat)
+
+    return moment.duration(end.diff(start, 'seconds')).milliseconds()
+  }
+
+  /**
+   * Formats the date for display
+   */
+  function getTime(val: string) {
+    return moment(val, CoreConstants.DateTime.ISOEasyDateTimeFormat)
+      .tz('Europe/Helsinki', true)
+      .tz('America/Toronto')
+      .format(CoreConstants.DateTime.ISOShortHourFormat);
+  }
+
+  /**
+   * Handles page change
+   */
+  function pageHandler(val: number) {
+    window.scrollTo({top: val, behavior: "smooth"});
+    paginationHandler(val)
+  }
+
+  function formatTradeType(val: string) {
+    if (val.toUpperCase() === TradeType.BUY.toString()) {
+      return <span className={styles[`${baseClass}--buy`]}><IoArrowUpCircle /></span>
+    } else {
+      return <span className={styles[`${baseClass}--sell`]}><IoArrowDownCircle /></span>
+    }
+  }
+
 
   //  RENDER
 
   return (
     <>
-      <div className={styles[baseClass]}>
-        <table className={styles[`${baseClass}__table`]}>
-          <thead>
-          <tr>
-            <th>Date</th>
-            <th>Trade Id</th>
-            <th>Open</th>
-            <th>Price</th>
-            <th>Type</th>
-            <th>Size</th>
-            <th>Symbol</th>
-            <th>Close</th>
-            <th>Price</th>
-            <th>P/L ($)</th>
-            <th>Points</th>
-            <th>Duration</th>
-            {hasAdmin ? <th></th> : null}
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>{moment('2024.01.30 17:02:47', CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortMonthFullDayFormat)}</td>
-            <td>10245895</td>
-            <td>{moment('2024.01.30 17:02:47', CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortHourFormat)}</td>
-            <td>{formatNumberForDisplay(17527.50)}</td>
-            <td>Sell</td>
-            <td>{formatNumberForDisplay(0.2)}</td>
-            <td>ndaq100</td>
-            <td>{moment('2024.01.30 17:07:20', CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortHourFormat)}</td>
-            <td>{formatNumberForDisplay(17542.83)}</td>
-            <td className={styles[`${baseClass}__negative`]}>{formatNumberForDisplay(-82.73)}</td>
-            <td>{formatNegativePoints(-15.33)}</td>
-            <td>{formatTimeElapsed(273)}</td>
-            {
-              hasAdmin ?
-                <td>
-                  <div className={styles[`${baseClass}__table-admin`]}>
-                    <SimpleButton icon={<MdDelete/>} iconPosition={"center"} variant={"primary"} plain={true}
-                                  handler={toggleAdminDeleteModal}/>
-                  </div>
-                </td>
-                : null
-            }
-          </tr>
-          <tr>
-            <td>{moment('2024.01.30 17:02:47', CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortMonthFullDayFormat)}</td>
-            <td>10247108</td>
-            <td>{moment('2024.01.30 17:08:39', CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortHourFormat)}</td>
-            <td>{formatNumberForDisplay(17539.66)}</td>
-            <td>Buy</td>
-            <td>{formatNumberForDisplay(0.2)}</td>
-            <td>ndaq100</td>
-            <td>{moment('2024.01.30 17:10:15', CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortHourFormat)}</td>
-            <td>{formatNumberForDisplay(17550.59)}</td>
-            <td className={styles[`${baseClass}__negative`]}>{formatNumberForDisplay(-58.99)}</td>
-            <td>{formatNegativePoints(-10.93)}</td>
-            <td>{formatTimeElapsed(96)}</td>
-            {
-              hasAdmin ?
-                <td>
-                  <div className={styles[`${baseClass}__table-admin`]}>
-                    <SimpleButton icon={<MdDelete/>} iconPosition={"center"} variant={"primary"} plain={true}
-                                  handler={toggleAdminDeleteModal}/>
-                  </div>
-                </td>
-                : null
-            }
-          </tr>
-          <tr>
-            <td>{moment('2024.01.30 17:02:47', CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortMonthFullDayFormat)}</td>
-            <td>10247555</td>
-            <td>{moment('2024.01.30 17:12:00', CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortHourFormat)}</td>
-            <td>{formatNumberForDisplay(17542.22)}</td>
-            <td>Sell</td>
-            <td>{formatNumberForDisplay(0.2)}</td>
-            <td>ndaq100</td>
-            <td>{moment('2024.01.30 19:31:25', CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortHourFormat)}</td>
-            <td>{formatNumberForDisplay(17480.08)}</td>
-            <td className={styles[`${baseClass}__positive`]}>{formatNumberForDisplay(335.13)}</td>
-            <td>{formatNegativePoints(62.14)}</td>
-            <td>{formatTimeElapsed(8365)}</td>
-            {
-              hasAdmin ?
-                <td>
-                  <div className={styles[`${baseClass}__table-admin`]}>
-                    <SimpleButton icon={<MdDelete/>} iconPosition={"center"} variant={"primary"} plain={true}
-                                  handler={toggleAdminDeleteModal}/>
-                  </div>
-                </td>
-                : null
-            }
-          </tr>
-          </tbody>
-        </table>
+      {
+        trades?.content?.length ?? 0 > 0 ?
+          <div className={styles[baseClass]}>
+            <table className={styles[`${baseClass}__table`]}>
+              <thead>
+              <tr>
+                <th>Date</th>
+                <th>Trade Id</th>
+                <th>Open</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Symbol</th>
+                <th>Close</th>
+                <th>Price</th>
+                <th>P/L ($)</th>
+                <th>Points</th>
+                <th>Duration</th>
+                {hasAdmin ? <th></th> : null}
+              </tr>
+              </thead>
+              <tbody>
+              {
+                trades?.content.map((item, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{moment(item.tradeOpenTime, CoreConstants.DateTime.ISOEasyDateTimeFormat).format(CoreConstants.DateTime.ISOShortMonthFullDayFormat)}</td>
+                      <td>{item.tradeId}</td>
+                      <td>{getTime(item.tradeOpenTime)}</td>
+                      <td>{formatNumberForDisplay(item.openPrice)}</td>
+                      <td className={styles[`${baseClass}__trade-type`]}>{formatTradeType(item.tradeType)}</td>
+                      <td>{formatNumberForDisplay(item.lotSize)}</td>
+                      <td>{item.product}</td>
+                      <td>{getTime(item.tradeCloseTime)}</td>
+                      <td>{formatNumberForDisplay(item.closePrice)}</td>
+                      <td className={computeClass(item.netProfit)}>{formatNumberForDisplay(item.netProfit)}</td>
+                      <td>{formatNegativePoints(item.points)}</td>
+                      <td>{formatTimeElapsed(computeTimeElapsed(item))}</td>
+                      {
+                        hasAdmin ?
+                          <td>
+                            <div className={styles[`${baseClass}__table-admin`]}>
+                              <SimpleButton icon={<MdDelete/>} iconPosition={"center"} variant={"primary"} plain={true}
+                                            handler={toggleAdminDeleteModal}/>
+                            </div>
+                          </td>
+                          : null
+                      }
+                    </tr>
+                  )
+                }) ?? []
+              }
+              </tbody>
+            </table>
 
-        <div>
-          <TradeListPagination
-            page={currentPage}
-            pageSize={10}
-            totalElements={100}
-            totalPages={10}
-            pageHandler={handlePageChange}
-          />
-        </div>
-      </div>
+            <div>
+              <TradeListPagination
+                page={trades?.pageable?.pageNumber ?? -1}
+                pageSize={trades?.pageable?.pageSize ?? 0}
+                totalElements={trades?.totalElements ?? 0}
+                totalPages={trades?.totalPages ?? 0}
+                pageHandler={pageHandler}
+              />
+            </div>
+          </div>
+          :
+          <>
+            <div className={styles[baseClass]}>
+              No data available. Try selecting another time period.
+            </div>
+          </>
+      }
 
       {/*TODO: delete handler on submission*/}
       <BaseModal

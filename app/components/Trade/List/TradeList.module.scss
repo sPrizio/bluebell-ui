@@ -59,4 +59,16 @@
     text-align: center;
     margin: 0 auto;
   }
+
+  &__trade-type {
+    font-size: 1.5rem !important;
+  }
+
+  &--buy {
+    color: $color-info;
+  }
+
+  &--sell {
+    color: $color-warning-light;
+  }
 }

@@ -25,3 +25,4 @@ manually added to the following files:
 - Refactor styles imports to be like AccountBalance.tsx
 - News component on dashboard should have scrolling after certain height
 - Upon clicking outside a menu, should auto-close
+- Error states for failed api calls

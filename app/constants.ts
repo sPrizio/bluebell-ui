@@ -1,4 +1,4 @@
-import {getNewsDomain} from "@/app/services/configuration/configurationService";
+import {getNewsDomain, getTradeDomain} from "@/app/services/configuration/configurationService";
 
 export const CoreConstants = {
   Routes: [
@@ -39,12 +39,22 @@ export const CoreConstants = {
     },
   ],
 
+  ApiCredentials: {
+    AuthHeader: 'fp-api_token',
+    TestAccountNumber: '28331289',
+    TestUserToken: 'Zmxvd2VycG90X2FwaV90b2tlbiZzLnByaXppb0Bob3RtYWlsLmNvbSYyMDI0LTA1LTAxVDEyOjE2OjQ3',
+  },
+
   ApiUrls: {
     News: {
       Get: getNewsDomain() + '/get?date={date}',
       GetInterval: getNewsDomain() + '/get-for-interval?start={start}&end={end}',
       Fetch: getNewsDomain() + '/fetch-news'
     },
+    Trade: {
+      GetPaginated: getTradeDomain() + '/for-interval-paged?start={start}&end={end}&accountNumber={accountNumber}&page={page}',
+      Upload: getTradeDomain() + '/import-trades?accountNumber={accountNumber}',
+    }
   },
 
   DateTime: {
