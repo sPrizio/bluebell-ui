@@ -10,6 +10,7 @@ import {News, StandardJsonResponse} from "@/app/types/apiTypes";
 import moment from "moment";
 import MarketNews from "@/app/components/News/MarketNews";
 import TradeLog from "@/app/components/Trade/Log/TradeLog";
+import AccountActivity from "@/app/components/Account/AccountActivity";
 
 /**
  * The dashboard page
@@ -77,14 +78,13 @@ export default function Dashboard() {
               content={[<AccountBalance key={0}/>]}
             />
           </div>
-
           <div className={styles[`${baseClass}__page-component`]}>
             <BaseCard
-              title={moment().startOf('day').format(CoreConstants.DateTime.ISOMonthWeekDayFormat)}
-              subtitle={'Today\'s News & Events'}
+              title={'Trade Log'}
+              subtitle={'Last 6 trading sessions'}
               hasBorder={false}
               hasOverflow={false}
-              content={[<MarketNews key={0} news={news} showOnlyImportant={true} hideDate={true}/>]}
+              content={[<TradeLog key={0} tradeRecords={[]}/>]}
             />
           </div>
         </div>
@@ -101,24 +101,26 @@ export default function Dashboard() {
           </div>
           <div className={styles[`${baseClass}__page-component`]}>
             <BaseCard
-              title={'Trade Log'}
-              subtitle={'Last 6 trading sessions'}
+              title={'Activity'}
+              subtitle={'A look at your account activity'}
               hasBorder={false}
               hasOverflow={false}
-              content={[<TradeLog key={0} tradeRecords={[]}/>]}
+              content={[<AccountActivity key={0} />]}
             />
           </div>
         </div>
       </div>
       <div className={styles[`${baseClass}__page-row`]}>
         <div className={styles[`${baseClass}__page-column`]}>
-          <BaseCard
-            title={'Activity'}
-            subtitle={'A look at your account activity'}
-            hasBorder={false}
-            hasOverflow={false}
-            content={[<div key={0}>Chart that shows trade profit, withdrawals & deposits per month</div>]}
-          />
+          <div className={styles[`${baseClass}__page-component`]}>
+            <BaseCard
+              title={moment().startOf('day').format(CoreConstants.DateTime.ISOMonthWeekDayFormat)}
+              subtitle={'Today\'s News & Events'}
+              hasBorder={false}
+              hasOverflow={false}
+              content={[<MarketNews key={0} news={news} showOnlyImportant={true} hideDate={true}/>]}
+            />
+          </div>
         </div>
       </div>
     </div>

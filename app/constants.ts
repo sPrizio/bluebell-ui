@@ -82,6 +82,7 @@ export const CoreConstants = {
     ColorSuccess: '#10D096',
     ColorDanger: '#FF316A',
     ColorLightGrey: 'rgb(239, 239, 247)',
-    ColorDisplayGrey: 'rgb(186, 184, 195)'
+    ColorDisplayGrey: 'rgb(186, 184, 195)',
+    BarRadius: 25
   },
 }

@@ -10,7 +10,7 @@ Theming is handled via 3 files:
 - typography.module.scss
 - variables.module.scss
 
-In addition, due to some programming limitiations, any theme changes must be
+In addition, due to some programming limitations, any theme changes must be
 manually added to the following files:
 - bluebell-datepicker.css
 - constants.CssConstants.ts
@@ -18,9 +18,10 @@ manually added to the following files:
 ---
 
 ### To Do
-- Dashboard
 - Contact us & Report Issue Pages
 - 400 & 500 error pages
 - SCSS refactor (variable reference cleanup, restructure nesting)
 - Mobile re-haul when time allows (will start tracking tasks in git)
 - Refactor styles imports to be like AccountBalance.tsx
+- News component on dashboard should have scrolling after certain height
+- Upon clicking outside a menu, should auto-close
