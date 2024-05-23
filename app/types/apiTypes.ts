@@ -119,9 +119,21 @@ export type Trade = {
 }
 
 export type TradeRecord = {
-    startDate: string,
-    endDate: string,
-    profit: number,
+    end: string,
+    largestLoss: number,
+    largestWin: number,
+    lossAverage: number,
+    losses: number,
+    lowestPoint: number,
+    netProfit: number,
     points: number,
-    trades: number
+    pointsGained: number,
+    pointsLost: number,
+    profitability: number,
+    retention: number,
+    start: string,
+    trades: number,
+    winAverage: number,
+    winPercentage: number,
+    wins: number
 }

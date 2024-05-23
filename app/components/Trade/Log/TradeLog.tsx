@@ -13,6 +13,7 @@ export default function TradeLog({tradeRecords = []}: { tradeRecords: TradeRecor
 
   const baseClass = "trade-log"
 
+//TODO: empty data state
 
   //  RENDER
 
@@ -25,14 +26,13 @@ export default function TradeLog({tradeRecords = []}: { tradeRecords: TradeRecor
         <div className={styles[`${baseClass}__header`] + ' ' + styles[`${baseClass}__header--centered`]}>Points</div>
       </div>
       <div className={styles[`${baseClass}__entries`]}>
-        <TradeLogEntry
-          tradeRecord={{startDate: '2024-04-04', endDate: '2024-04-05', profit: 55.02, points: 6.99, trades: 21}}/>
-        <TradeLogEntry
-          tradeRecord={{startDate: '2024-04-03', endDate: '2024-04-04', profit: 313.03, points: 40.98, trades: 14}}/>
-        <TradeLogEntry
-          tradeRecord={{startDate: '2024-03-27', endDate: '2024-03-28', profit: -288.82, points: -36.43, trades: 12}}/>
-        <TradeLogEntry
-          tradeRecord={{startDate: '2024-03-26', endDate: '2024-03-27', profit: 120.57, points: 15.56, trades: 16}}/>
+        {
+          (tradeRecords && tradeRecords.length > 0 && tradeRecords.map((item, key) => {
+            return (
+              <TradeLogEntry tradeRecord={item} key={key} />
+            )
+          })) ?? <p>HI</p>
+        }
       </div>
     </div>
   )

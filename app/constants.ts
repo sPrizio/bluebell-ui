@@ -1,4 +1,4 @@
-import {getNewsDomain, getTradeDomain} from "@/app/services/configuration/configurationService";
+import {getNewsDomain, getTradeDomain, getTradeRecordDomain} from "@/app/services/configuration/configurationService";
 
 export const CoreConstants = {
   Routes: [
@@ -54,6 +54,9 @@ export const CoreConstants = {
     Trade: {
       GetPaginated: getTradeDomain() + '/for-interval-paged?start={start}&end={end}&accountNumber={accountNumber}&page={page}',
       Upload: getTradeDomain() + '/import-trades?accountNumber={accountNumber}',
+    },
+    TradeRecord: {
+      Get: getTradeRecordDomain() + '/for-interval?start={start}&end={end}&accountNumber={accountNumber}&interval={interval}&count={count}',
     }
   },
 

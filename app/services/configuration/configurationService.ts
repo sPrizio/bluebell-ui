@@ -44,3 +44,12 @@ export function getNewsDomain(): string {
 export function getTradeDomain(): string {
     return getDomain('/trade')
 }
+
+/**
+ * Gets the trade record url
+ *
+ * @returns {string} url
+ */
+export function getTradeRecordDomain(): string {
+    return getDomain('/trade-record')
+}
