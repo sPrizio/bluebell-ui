@@ -22,10 +22,22 @@
 
     thead {
       th {
-        padding-bottom: 0.75rem;
+
+        &:first-child {
+          border-top-left-radius: 1rem;
+        }
+
+        &:last-child {
+          border-top-right-radius: 1rem;
+        }
+
+
+        padding: 1rem 0;
         text-align: center;
         text-transform: uppercase;
-        color: $color-primary;
+        background-color: $color-primary;
+        color: $color-white;
+        vertical-align: middle;
         font-weight: $font-weight-bold !important;
 
         @include mq-large-down {
@@ -38,12 +50,14 @@
 
     tbody {
       tr {
-        border-bottom: 0.125rem solid rgba($color-primary, 0.25);
+        &:nth-child(even) {
+          background-color: rgba($color-grey-100, 0.75);
+        }
       }
 
       td {
         text-align: center;
-        padding: 1.125rem 0;
+        padding: 1rem 0;
 
         @include mq-large-down {
           @include body-sizing('small', 'mobile');

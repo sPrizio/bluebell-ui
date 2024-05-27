@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './TradeLogEntry.module.scss';
 import {TradeRecord} from "@/app/types/apiTypes";
-import {formatNegativePoints} from "@/app/services/data/dataIntegrityService";
+import {formatNegativePoints, formatNumberForDisplay} from "@/app/services/data/dataIntegrityService";
 import moment from "moment";
 import {CoreConstants} from "@/app/constants";
 
@@ -30,7 +30,7 @@ export default function TradeLogEntry({ tradeRecord }: {tradeRecord: TradeRecord
         {tradeRecord.trades}
       </div>
       <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__column--centered`]}>
-        {tradeRecord.netProfit}
+        {formatNumberForDisplay(tradeRecord.netProfit)}
       </div>
       <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__column--centered`]}>
         {formatNegativePoints(tradeRecord.points)}

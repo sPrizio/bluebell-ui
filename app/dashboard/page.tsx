@@ -48,7 +48,7 @@ export default function Dashboard() {
           .replace('{start}', moment().startOf('day').format(CoreConstants.DateTime.ISODateFormat))
           .replace('{end}', moment().startOf('day').add(1, 'days').format(CoreConstants.DateTime.ISODateFormat))
           + '&locales=CAN&locales=USD',
-        {method: 'GET'}
+        {method: 'GET', headers: getAuthHeader()}
       )
 
       if (res.ok) {

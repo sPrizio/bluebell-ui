@@ -1,14 +1,16 @@
 import React from "react";
 import styles from './TradeHistorySummary.module.scss'
 import {formatNegativePoints, formatNumberForDisplay} from "@/app/services/data/dataIntegrityService";
+import {TradeRecord} from "@/app/types/apiTypes";
 
 /**
  * Renders a summary table for trades within a time span
  *
+ * @param tradeRecord Trade Record
  * @author Stephen Prizio
  * @version 0.0.1
  */
-function TradeHistorySummary() {
+function TradeHistorySummary({tradeRecord = null}: Readonly<{ tradeRecord: TradeRecord | null }>) {
 
   const baseClass = "trade-history-summary"
 
@@ -26,8 +28,8 @@ function TradeHistorySummary() {
         </div>
         <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__column--no-margin`]}>
           <div className={styles[`${baseClass}__content`]}>
-            ${formatNumberForDisplay(335.68)}<br/>
-            <small>${formatNumberForDisplay(-48.53)}</small>
+            {formatNumberForDisplay(tradeRecord?.netProfit ?? 0)}<br/>
+            <small>{formatNumberForDisplay(tradeRecord?.lowestPoint ?? 0)}</small>
           </div>
         </div>
         <div className={styles[`${baseClass}__break`] + ' ' + styles[`${baseClass}__break--active`]}/>
@@ -40,9 +42,9 @@ function TradeHistorySummary() {
         </div>
         <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__column--no-margin`]}>
           <div className={styles[`${baseClass}__content`]}>
-            {formatNegativePoints(98.42)}<br/>
-            <small>{formatNumberForDisplay(217.98)}</small><br/>
-            <small>{formatNegativePoints(-119.56)}</small>
+            {formatNegativePoints(tradeRecord?.points ?? 0)}<br/>
+            <small>{formatNumberForDisplay(tradeRecord?.pointsGained ?? 0)}</small><br/>
+            <small>{formatNegativePoints((tradeRecord?.pointsLost ?? 0) * -1)}</small>
           </div>
         </div>
       </div>
@@ -56,8 +58,8 @@ function TradeHistorySummary() {
         </div>
         <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__column--no-margin`]}>
           <div className={styles[`${baseClass}__content`]}>
-            {formatNumberForDisplay(128.32)}<br/>
-            <small>{formatNumberForDisplay(41.87)}</small>
+            {formatNumberForDisplay(tradeRecord?.largestWin ?? 0)}<br/>
+            <small>{formatNumberForDisplay(tradeRecord?.winAverage ?? 0)}</small>
           </div>
         </div>
         <div className={styles[`${baseClass}__break`] + ' ' + styles[`${baseClass}__break--active`]}/>
@@ -69,8 +71,8 @@ function TradeHistorySummary() {
         </div>
         <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__column--no-margin`]}>
           <div className={styles[`${baseClass}__content`]}>
-            {formatNumberForDisplay(48.53)}<br/>
-            <small>{formatNumberForDisplay(21.14)}</small>
+            {formatNumberForDisplay(tradeRecord?.largestLoss ?? 0)}<br/>
+            <small>{formatNumberForDisplay(tradeRecord?.lossAverage ?? 0)}</small>
           </div>
         </div>
       </div>
@@ -84,8 +86,8 @@ function TradeHistorySummary() {
         </div>
         <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__column--no-margin`]}>
           <div className={styles[`${baseClass}__content`]}>
-            56%<br/>
-            <small>16 trades</small>
+            {tradeRecord?.winPercentage ?? 0}%<br/>
+            <small>{tradeRecord?.trades ?? 0} trades</small>
           </div>
         </div>
         <div className={styles[`${baseClass}__break`] + ' ' + styles[`${baseClass}__break--active`]}/>
@@ -97,8 +99,8 @@ function TradeHistorySummary() {
         </div>
         <div className={styles[`${baseClass}__column`] + ' ' + styles[`${baseClass}__column--no-margin`]}>
           <div className={styles[`${baseClass}__content`]}>
-            {formatNegativePoints(2.56)}<br/>
-            <small>65%</small>
+            {formatNegativePoints(tradeRecord?.profitability ?? 0)}<br/>
+            <small>{tradeRecord?.retention ?? 0}%</small>
           </div>
         </div>
       </div>

@@ -7,9 +7,9 @@
     flex-direction: row;
     align-content: center;
     justify-content: center;
-    padding: 0.5rem 0;
-    margin: -1rem 0 0 0;
-    border-bottom: 0.0625rem solid $color-primary;
+    padding: 0.75rem 1.0rem;
+    margin: -1.25rem 0 0 0;
+    border-bottom: 0.15rem solid $color-primary;
   }
 
   &__header {
@@ -20,7 +20,7 @@
     @include mq-medium-down {
       @include body-sizing('xsmall', 'mobile');
     }
-    font-weight: $font-weight-semi-bold;
+    font-weight: $font-weight-bold !important;
 
     &--centered {
       text-align: center;

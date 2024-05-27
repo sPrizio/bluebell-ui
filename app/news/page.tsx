@@ -7,6 +7,7 @@ import moment from "moment";
 import {News, StandardJsonResponse} from "@/app/types/apiTypes";
 import PageLoader from "@/app/components/Loader/PageLoader";
 import MarketNews from "@/app/components/News/MarketNews";
+import {getAuthHeader} from "@/app/services/configuration/configurationService";
 
 /**
  * The market news page
@@ -39,7 +40,7 @@ export default function News() {
           .replace('{end}', moment().startOf('week').add(6, 'days').format(CoreConstants.DateTime.ISODateFormat))
           + '&locales=all_countries'
         ,
-        {method: 'GET'}
+        {method: 'GET', headers: getAuthHeader()}
       )
 
       if (res.ok) {

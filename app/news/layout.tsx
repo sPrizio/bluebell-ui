@@ -7,6 +7,7 @@ import {FaNewspaper} from "react-icons/fa";
 import SimpleButton from "@/app/components/Button/SimpleButton";
 import {AiOutlineImport} from "react-icons/ai";
 import {CoreConstants} from "@/app/constants";
+import {getAuthHeader} from "@/app/services/configuration/configurationService";
 
 /**
  * The default layout for the market news page
@@ -45,7 +46,7 @@ export default function MarketNewsLayout({children}: { children: React.ReactNode
     setIsLoading(true)
 
     try {
-      const res = await fetch(CoreConstants.ApiUrls.News.Fetch, {method: 'POST'})
+      const res = await fetch(CoreConstants.ApiUrls.News.Fetch, {method: 'POST', headers: getAuthHeader()})
       if (res.ok) {
         const data = await res.json()
         if (data.success) {

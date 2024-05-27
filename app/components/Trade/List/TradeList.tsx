@@ -108,7 +108,7 @@ function TradeList({hasAdmin = false, trades, paginationHandler}: Readonly<{
   return (
     <>
       {
-        trades?.content?.length ?? 0 > 0 ?
+        (trades?.content?.length ?? 0) > 0 ?
           <div className={styles[baseClass]}>
             <table className={styles[`${baseClass}__table`]}>
               <thead>

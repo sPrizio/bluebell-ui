@@ -2,12 +2,15 @@
 
 import styles from './layout.module.scss'
 import React, {useEffect, useState} from "react";
-import {SimpleOption} from "@/app/types/appTypes";
+import {Interval, SimpleOption} from "@/app/types/appTypes";
 import SimpleSelect from "@/app/components/Select/SimpleSelect";
 import BluebellDatePicker from "@/app/components/DatePicker/BluebellDatePicker";
 import moment from "moment";
 import BaseCard from "@/app/components/Card/BaseCard";
 import TradeHistory from "@/app/components/Trade/History/TradeHistory";
+import {CoreConstants} from "@/app/constants";
+import {getAuthHeader} from "@/app/services/configuration/configurationService";
+import {StandardJsonResponse, TradeRecord} from "@/app/types/apiTypes";
 
 /**
  * Page that displays trade history for different time periods, aggregated by different intervals
@@ -20,22 +23,24 @@ export default function TradingHistory() {
   const baseClass = "trading-history-page"
   const quickPicks: SimpleOption[] =
     [
-      {label: 'Today', value: 'today', unit: 'days', count: 0},
-      {label: 'Yesterday', value: 'yesterday', unit: 'days', count: 1},
-      {label: 'This Week', value: 'this-week', unit: 'weeks', count: 1},
-      {label: 'This Month', value: 'this-month', unit: 'months', count: 1},
-      {label: 'Last 3 Months', value: 'last-3-months', unit: 'months', count: 3},
-      {label: 'Last 6 Months', value: 'last-6-months', unit: 'months', count: 6},
-      {label: 'All-time', value: 'all-time', unit: 'years', count: 25},
-      {label: 'Custom', value: 'custom', unit: 'days', count: -1}
+      {label: 'Today', value: 'today', unit: 'days', count: 0, interval: Interval.DAILY},
+      {label: 'Yesterday', value: 'yesterday', unit: 'days', count: 1, interval: Interval.DAILY},
+      {label: 'This Week', value: 'this-week', unit: 'weeks', count: 1, interval: Interval.DAILY},
+      {label: 'This Month', value: 'this-month', unit: 'months', count: 1, interval: Interval.DAILY},
+      {label: 'Last 3 Months', value: 'last-3-months', unit: 'months', count: 3, interval: Interval.WEEKLY},
+      {label: 'Last 6 Months', value: 'last-6-months', unit: 'months', count: 6, interval: Interval.MONTHLY},
+      {label: 'All-time', value: 'all-time', unit: 'years', count: 25, interval: Interval.MONTHLY},
+      {label: 'Custom', value: 'custom', unit: 'days', count: -1, interval: Interval.DAILY}
     ]
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [startDate, setStartDate] = useState<Date | null>(new Date())
+  const [startDate, setStartDate] = useState<Date | null>(moment().startOf('month').toDate())
   const [endDate, setEndDate] = useState<Date | null>(new Date())
-  const [quickPick, setQuickPick] = useState(quickPicks[0].value)
+  const [quickPick, setQuickPick] = useState(getQuickPickForValue('this-month').value)
+  const [tradeRecords, setTradeRecords] = useState<Array<TradeRecord>>([])
 
   useEffect(() => {
+    getTradeRecords()
   }, [])
 
 
@@ -106,6 +111,39 @@ export default function TradingHistory() {
     }
   }
 
+  /**
+   * Obtains the most recent trade records
+   */
+  async function getTradeRecords() {
+
+    setIsLoading(true)
+
+    try {
+      const res = await fetch(
+        CoreConstants.ApiUrls.TradeRecord.Get
+          .replace('{start}', startDate?.toISOString().split('T')[0] ?? '')
+          .replace('{end}', endDate?.toISOString().split('T')[0] ?? '')
+          .replace('{accountNumber}', CoreConstants.ApiCredentials.TestAccountNumber)
+          .replace('{interval}', getQuickPickForValue(quickPick).interval.toString())
+          .replace('{count}', '-1')
+        + '&locales=CAN&locales=USD',
+        {headers: getAuthHeader(), method: 'GET'}
+      )
+
+      if (res.ok) {
+        const data: StandardJsonResponse = await res.json()
+        if (data.success) {
+          setTradeRecords(data.data)
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    }
+
+    setIsLoading(false)
+  }
+
+  //TODO: trade history chart
 
   //  RENDER
 
@@ -134,39 +172,29 @@ export default function TradingHistory() {
           <SimpleSelect options={quickPicks} val={quickPick} handler={handleSelectChange}/>
         </div>
       </div>
-      <div className={styles[`${baseClass}__page-row`]}>
-        <div className={styles[`${baseClass}__history-wrapper`]}>
-          <BaseCard
-            subtitle={'Wednesday'}
-            hasBorder={false}
-            hasOverflow={true}
-            title={'February 21st, 2024'}
-            content={[<TradeHistory key={0}/>]}
-          />
-        </div>
-      </div>
-      <div className={styles[`${baseClass}__page-row`]}>
-        <div className={styles[`${baseClass}__history-wrapper`]}>
-          <BaseCard
-            subtitle={'Tuesday'}
-            hasBorder={false}
-            hasOverflow={true}
-            title={'February 20th, 2024'}
-            content={[<TradeHistory key={0}/>]}
-          />
-        </div>
-      </div>
-      <div className={styles[`${baseClass}__page-row`]}>
-        <div className={styles[`${baseClass}__history-wrapper`]}>
-          <BaseCard
-            subtitle={'Monday'}
-            hasBorder={false}
-            hasOverflow={true}
-            title={'February 19th, 2024'}
-            content={[<TradeHistory key={0}/>]}
-          />
-        </div>
-      </div>
+      {
+        tradeRecords && tradeRecords.length > 0 ?
+          <>
+            {
+              tradeRecords.map((item, key) => {
+                return (
+                  <div className={styles[`${baseClass}__page-row`]} key={key}>
+                    <div className={styles[`${baseClass}__history-wrapper`]}>
+                      <BaseCard
+                        subtitle={moment(item.start).format(CoreConstants.DateTime.ISOWeekdayFormat)}
+                        hasBorder={false}
+                        hasOverflow={true}
+                        title={moment(item.start).format(CoreConstants.DateTime.ISOLongMonthDayYearFormat)}
+                        content={[<TradeHistory key={0} tradeRecord={item} />]}
+                      />
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </>
+          : <p>No data available.</p>
+      }
     </div>
   )
 }

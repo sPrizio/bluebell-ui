@@ -9,11 +9,11 @@ import TradeList from "@/app/components/Trade/List/TradeList";
 import SimpleSelect from "@/app/components/Select/SimpleSelect";
 import {SimpleOption} from "@/app/types/appTypes";
 import {resolveIcon} from "@/app/services/resolver/iconResolverService";
-import TradeImportModal from "@/app/components/Modal/trade/TradeImportModal";
 import moment from "moment";
 import {CoreConstants} from "@/app/constants";
 import {getAuthHeader} from "@/app/services/configuration/configurationService";
 import {PagedResponse, StandardJsonResponse, Trade} from "@/app/types/apiTypes";
+import TradeImportModal from "@/app/components/Modal/Trade/TradeImportModal";
 
 /**
  * The trades page, showing all trades and allowing the user to upload new ones into the system
@@ -149,7 +149,7 @@ export default function Trades() {
           loading={isLoading}
           hasBorder={false}
           hasOverflow={true}
-          title={'Trade Log'}
+          title={'Log'}
           content={[<TradeList hasAdmin={false} key={0} trades={trades} paginationHandler={getTrades} />]}
           controls={[<SimpleSelect options={quickPicks} key={0} handler={handleQuickPickChange} val={quickPick}/>]}
         />

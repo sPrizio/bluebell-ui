@@ -6,8 +6,7 @@
   flex-direction: row;
   align-content: center;
   justify-content: center;
-  padding: 0.75rem 0;
-  width: 100%;
+  padding: 0.75rem 1.0rem;
 
   @include body-sizing('default', 'desktop');
   @include mq-medium-down {
@@ -18,9 +17,13 @@
     /*margin-top: 1rem;*/
   }
 
+  &:nth-child(even) {
+    background-color: rgba($color-grey-100, 0.75);
+  }
+
   &:not(:last-child) {
     /*margin-bottom: 1rem;*/
-    border-bottom: 1px solid rgba($color-primary, 0.25);
+    //border-bottom: 1px solid rgba($color-primary, 0.25);
   }
 
   &__column {

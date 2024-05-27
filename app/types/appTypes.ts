@@ -6,11 +6,19 @@ export enum TradeType {
   SELL = 'SELL'
 }
 
+export enum Interval {
+  DAILY = 'DAILY',
+  WEEKLY = 'WEEKLY',
+  MONTHLY = 'MONTHLY',
+  YEARLY = 'YEARLY'
+}
+
 export type SimpleOption = {
   label: string,
   value: string,
   unit: DurationConstructor,
   count: number,
+  interval: Interval
 }
 
 export type UserMenuOption = {
