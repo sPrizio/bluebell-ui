@@ -21,6 +21,7 @@ export default function ChartLayout({children}: {children: React.ReactNode}) {
     <div className={styles[baseClass]}>
       <PageHeaderSection
         title={'Charting'}
+        subtitle={'Review the price action for the NDX as far back as 2008!'}
         controls={[]}
         icon={<FaRegChartBar/>}
       />

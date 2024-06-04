@@ -41,7 +41,7 @@ function PageHeaderSection({ icon = null, title = '', subtitle = '', controls = 
       }
       <div className={styles[`${baseClass}__item`] + ' ' + styles[`${baseClass}__title`]}>
         <div className={styles[`${baseClass}__title-wrapper`]}>
-          {title}<br/>
+          {title}
           {
             subtitle && subtitle.length > 0 ?
               <div className={styles[`${baseClass}__subtitle`]}>

@@ -51,14 +51,15 @@
   }
 
   &__subtitle {
+    margin-top: -0.625rem;
     color: $color-ui-dark-card-header;
-    @include header-sizing(4, 'desktop');
+    @include header-sizing(5, 'desktop');
     @include mq-large-down {
-      @include header-sizing(4, 'mobile');
+      @include header-sizing(5, 'mobile');
     }
 
     font-weight: $font-weight-medium !important;
-    letter-spacing: -0.15rem !important;
+    letter-spacing: -0.1rem !important;
   }
 
   &__controls {

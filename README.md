@@ -1,5 +1,5 @@
-# bluebell
-Official repository for bluebell wealth management
+# bluebell-ui
+bluebell-ui is the official git repository for the UI that powers bluebell. It is powered by Next.js and is built on React.
 
 ---
 
@@ -23,6 +23,5 @@ manually added to the following files:
 - SCSS refactor (variable reference cleanup, restructure nesting)
 - Mobile re-haul when time allows (will start tracking tasks in git)
 - Refactor styles imports to be like AccountBalance.tsx
-- News component on dashboard should have scrolling after certain height
 - Upon clicking outside a menu, should auto-close
 - Error states for failed api calls

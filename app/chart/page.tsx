@@ -35,12 +35,24 @@ export default function Chart() {
     xaxis: {
       type: 'datetime',
       labels: {
-        datetimeUTC: false
+        datetimeUTC: false,
+        formatter: function(value: any, timestamp: number, opts: any) {
+          if (quickPick === 'one-day') {
+            return moment(timestamp).format(CoreConstants.DateTime.ISOShortMonthDayYearFormat);
+          }
+
+          return moment(timestamp).format(CoreConstants.DateTime.ISOShortHourFormat);
+        }
       }
     },
     yaxis: {
       tooltip: {
         enabled: true
+      },
+      labels: {
+        formatter: function(value: string | number) {
+          return formatNumberForDisplay(value)
+        }
       }
     }
   }
