@@ -46,7 +46,7 @@ function NavBar() {
         <div className={styles[`${baseClass}__items`] + ' ' + styles[`${baseClass}__items--left`]}>
           <div className={styles[`${baseClass}__item`] + ' ' + styles[`${baseClass}__item--brand`]}>
             <Link href={'/dashboard'} onClick={() => handleClick('/dashboard')}>
-              <MainLogo />
+              <MainLogo/>
             </Link>
           </div>
           <div className={styles[`${baseClass}__item`]}>
@@ -61,10 +61,14 @@ function NavBar() {
             <NavBarItem route={'/news'} label={'Market News'} active={'/news' === currentTab}
                         icon={resolveIcon('FaNewspaper')} handler={handleClick}/>
           </div>
+          <div className={styles[`${baseClass}__item`]}>
+            <NavBarItem route={'/chart'} label={'Chart'} active={'/chart' === currentTab}
+                        icon={resolveIcon('FaRegChartBar ')} handler={handleClick}/>
+          </div>
         </div>
         <div className={styles[`${baseClass}__items`] + ' ' + styles[`${baseClass}__items--right`]}>
           <div className={styles[`${baseClass}__item`]}>
-            <Avatar handler={() => setUserMenuActive(!userMenuActive)} />
+            <Avatar handler={() => setUserMenuActive(!userMenuActive)}/>
             <UserMenu
               active={userMenuActive}
               options={[

@@ -27,7 +27,7 @@ export default function TradingHistory() {
       {label: 'Yesterday', value: 'yesterday', unit: 'days', count: 1, interval: Interval.DAILY},
       {label: 'This Week', value: 'this-week', unit: 'weeks', count: 1, interval: Interval.DAILY},
       {label: 'This Month', value: 'this-month', unit: 'months', count: 1, interval: Interval.DAILY},
-      {label: 'Last 3 Months', value: 'last-3-months', unit: 'months', count: 3, interval: Interval.WEEKLY},
+      {label: 'Last 3 Months', value: 'last-3-months', unit: 'months', count: 3, interval: Interval.DAILY},
       {label: 'Last 6 Months', value: 'last-6-months', unit: 'months', count: 6, interval: Interval.MONTHLY},
       {label: 'All-time', value: 'all-time', unit: 'years', count: 25, interval: Interval.MONTHLY},
       {label: 'Custom', value: 'custom', unit: 'days', count: -1, interval: Interval.DAILY}
@@ -41,7 +41,7 @@ export default function TradingHistory() {
 
   useEffect(() => {
     getTradeRecords()
-  }, [])
+  }, [endDate])
 
 
   //  GENERAL FUNCTIONS
@@ -109,6 +109,21 @@ export default function TradingHistory() {
           return moment().startOf('day').toDate()
       }
     }
+  }
+
+  /**
+   * Determines the date format to display based on the given interval
+   *
+   * @param interval time interval
+   * @param date date string to display
+   */
+  function resolveDate(interval: Interval, date: string) {
+
+    if (interval == Interval.MONTHLY) {
+      return moment(date).format(CoreConstants.DateTime.ISOMonthYearFormat)
+    }
+
+    return moment(date).format(CoreConstants.DateTime.ISOLongMonthDayYearFormat)
   }
 
   /**
@@ -181,10 +196,11 @@ export default function TradingHistory() {
                   <div className={styles[`${baseClass}__page-row`]} key={key}>
                     <div className={styles[`${baseClass}__history-wrapper`]}>
                       <BaseCard
-                        subtitle={moment(item.start).format(CoreConstants.DateTime.ISOWeekdayFormat)}
+                        loading={isLoading}
+                        subtitle={getQuickPickForValue(quickPick).interval == Interval.MONTHLY ? '' : moment(item.start).format(CoreConstants.DateTime.ISOWeekdayFormat)}
                         hasBorder={false}
                         hasOverflow={true}
-                        title={moment(item.start).format(CoreConstants.DateTime.ISOLongMonthDayYearFormat)}
+                        title={resolveDate(getQuickPickForValue(quickPick).interval, item.start)}
                         content={[<TradeHistory key={0} tradeRecord={item} />]}
                       />
                     </div>

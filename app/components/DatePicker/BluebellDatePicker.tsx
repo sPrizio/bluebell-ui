@@ -10,6 +10,8 @@ import DatePicker from "react-datepicker";
  * @param handler handler function
  * @param isRounded add rounded borders (optional)
  * @param disableWeekends if true, disable weekends
+ * @param monthDropdown show configurable months
+ * @param yearDropdown show configurable years
  * @author Stephen Prizio
  * @version 0.0.1
  */
@@ -19,14 +21,18 @@ function BluebellDatePicker(
     val = null,
     handler,
     isRounded = false,
-    disableWeekends = false
+    disableWeekends = false,
+    monthDropdown = false,
+    yearDropdown = false,
   }: Readonly<
     {
       label?: string
       val: Date | null,
       handler: Function,
       isRounded?: boolean,
-      disableWeekends?: boolean
+      disableWeekends?: boolean,
+      monthDropdown?: boolean,
+      yearDropdown?: boolean,
     }>
 ) {
 
@@ -46,7 +52,9 @@ function BluebellDatePicker(
 
     return true
   }
-
+//todayButton
+  //showYearDropdown?: boolean | undefined;
+  //     showYearPicker?: boolean | undefined;
 
   //  RENDER
 
@@ -64,6 +72,8 @@ function BluebellDatePicker(
         selected={val}
         onChange={(date) => handler(date)}
         filterDate={isWeekday}
+        showMonthDropdown={monthDropdown}
+        showYearDropdown={yearDropdown}
       />
     </div>
   )

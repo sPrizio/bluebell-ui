@@ -28,6 +28,15 @@ export function getDomain(appendVal: string): string {
 }
 
 /**
+ * Gets the chart domain
+ *
+ * @returns {string} url
+ */
+export function getChartDomain(): string {
+    return getDomain('/chart')
+}
+
+/**
  * Gets the news url
  *
  * @returns {string} url

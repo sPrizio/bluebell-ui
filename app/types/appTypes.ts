@@ -7,6 +7,7 @@ export enum TradeType {
 }
 
 export enum Interval {
+  MINUTE = 'MINUTE',
   DAILY = 'DAILY',
   WEEKLY = 'WEEKLY',
   MONTHLY = 'MONTHLY',

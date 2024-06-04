@@ -1,4 +1,9 @@
-import {getNewsDomain, getTradeDomain, getTradeRecordDomain} from "@/app/services/configuration/configurationService";
+import {
+  getChartDomain,
+  getNewsDomain,
+  getTradeDomain,
+  getTradeRecordDomain
+} from "@/app/services/configuration/configurationService";
 
 export const CoreConstants = {
   Routes: [
@@ -46,6 +51,9 @@ export const CoreConstants = {
   },
 
   ApiUrls: {
+    Chart: {
+      GetApex: getChartDomain() + '/apex-data?start={start}&end={end}&interval={interval}',
+    },
     News: {
       Get: getNewsDomain() + '/get?date={date}',
       GetInterval: getNewsDomain() + '/get-for-interval?start={start}&end={end}',

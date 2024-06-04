@@ -11,7 +11,7 @@ import {GoHistory} from "react-icons/go";
  */
 export default function TradingHistoryLayout({children}: { children: React.ReactNode }) {
 
-  const baseClass = "trading-history-page"
+  const baseClass = "trading-history-layout"
 
 
   //  RENDER

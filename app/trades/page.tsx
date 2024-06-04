@@ -1,19 +1,15 @@
 'use client'
 
+import styles from './layout.module.scss'
 import BaseCard from "@/app/components/Card/BaseCard";
 import React, {useEffect, useState} from "react";
-import PageHeaderSection from "@/app/components/Section/Header/PageHeaderSection";
-import {TbPackageImport} from "react-icons/tb";
-import SimpleButton from "@/app/components/Button/SimpleButton";
 import TradeList from "@/app/components/Trade/List/TradeList";
 import SimpleSelect from "@/app/components/Select/SimpleSelect";
-import {SimpleOption} from "@/app/types/appTypes";
-import {resolveIcon} from "@/app/services/resolver/iconResolverService";
+import {Interval, SimpleOption} from "@/app/types/appTypes";
 import moment from "moment";
 import {CoreConstants} from "@/app/constants";
 import {getAuthHeader} from "@/app/services/configuration/configurationService";
 import {PagedResponse, StandardJsonResponse, Trade} from "@/app/types/apiTypes";
-import TradeImportModal from "@/app/components/Modal/Trade/TradeImportModal";
 
 /**
  * The trades page, showing all trades and allowing the user to upload new ones into the system
@@ -23,20 +19,20 @@ import TradeImportModal from "@/app/components/Modal/Trade/TradeImportModal";
  */
 export default function Trades() {
 
+  const baseClass = "trades-page"
   const defaultQuickPick = 'today'
   const quickPicks: SimpleOption[] =
     [
-      {label: 'Today', value: 'today', unit: 'days', count: 0},
-      {label: 'Yesterday', value: 'yesterday', unit: 'days', count: 1},
-      {label: 'This Week', value: 'this-week', unit: 'weeks', count: 1},
-      {label: 'This Month', value: 'this-month', unit: 'months', count: 1},
-      {label: 'Last 3 Months', value: 'last-3-months', unit: 'months', count: 3},
-      {label: 'Last 6 Months', value: 'last-6-months', unit: 'months', count: 6},
-      {label: 'All-time', value: 'all-time', unit: 'years', count: 25},
+      {label: 'Today', value: 'today', unit: 'days', count: 0, interval: Interval.DAILY},
+      {label: 'Yesterday', value: 'yesterday', unit: 'days', count: 1, interval: Interval.DAILY},
+      {label: 'This Week', value: 'this-week', unit: 'weeks', count: 1, interval: Interval.DAILY},
+      {label: 'This Month', value: 'this-month', unit: 'months', count: 1, interval: Interval.DAILY},
+      {label: 'Last 3 Months', value: 'last-3-months', unit: 'months', count: 3, interval: Interval.WEEKLY},
+      {label: 'Last 6 Months', value: 'last-6-months', unit: 'months', count: 6, interval: Interval.MONTHLY},
+      {label: 'All-time', value: 'all-time', unit: 'years', count: 25, interval: Interval.YEARLY},
     ]
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [importModalActive, setImportModalActive] = useState(false)
   const [quickPick, setQuickPick] = useState(defaultQuickPick)
   const [start, setStart] = useState(computeStartDate(defaultQuickPick));
   const [end, setEnd] = useState(computeEndDate(defaultQuickPick))
@@ -62,13 +58,6 @@ export default function Trades() {
    */
   function computeEndDate(val: string) {
     return moment().add(1, 'days').startOf('day').format(CoreConstants.DateTime.ISODateTimeFormat)
-  }
-
-  /**
-   * Toggles the import trades modal active/inactive
-   */
-  function toggleTradeImportModal() {
-    setImportModalActive(true)
   }
 
   /**
@@ -127,24 +116,7 @@ export default function Trades() {
 
   return (
     <>
-      <div className="trades-page">
-        <PageHeaderSection
-          icon={resolveIcon('CgArrowsExchange')}
-          title={'Trades'}
-          controls={
-            [
-              <SimpleButton
-                key={0}
-                variant={"primary"}
-                text={'Import Trades'}
-                icon={<TbPackageImport/>}
-                iconPosition={"right"}
-                handler={toggleTradeImportModal}
-                plain={true}
-              />
-            ]
-          }
-        />
+      <div className={styles[baseClass]}>
         <BaseCard
           loading={isLoading}
           hasBorder={false}
@@ -154,7 +126,6 @@ export default function Trades() {
           controls={[<SimpleSelect options={quickPicks} key={0} handler={handleQuickPickChange} val={quickPick}/>]}
         />
       </div>
-      <TradeImportModal active={importModalActive} closeHandler={() => setImportModalActive(false)}/>
     </>
   )
 }

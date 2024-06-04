@@ -1,18 +1,18 @@
-import {MdDashboard} from "react-icons/md";
 import PageHeaderSection from "@/app/components/Section/Header/PageHeaderSection";
 import React from "react";
 import styles from './layout.module.scss'
+import {FaRegChartBar} from "react-icons/fa";
 
 /**
- * The default layout for the dashboard page
+ * The default layout for the chart page
  *
  * @param children react components
  * @author Stephen Prizio
  * @version 0.0.1
  */
-export default function DashboardLayout({children}: {children: React.ReactNode}) {
+export default function ChartLayout({children}: {children: React.ReactNode}) {
 
-  const baseClass = "dashboard-layout"
+  const baseClass = "chart-layout"
 
 
   //  RENDER
@@ -20,9 +20,9 @@ export default function DashboardLayout({children}: {children: React.ReactNode})
   return (
     <div className={styles[baseClass]}>
       <PageHeaderSection
-        title={'Hello, Test User'}
+        title={'Charting'}
         controls={[]}
-        icon={<MdDashboard/>}
+        icon={<FaRegChartBar/>}
       />
       <div>
         {children}

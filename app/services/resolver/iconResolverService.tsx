@@ -1,6 +1,6 @@
 import {MdAccountCircle, MdDashboard, MdOutlineHistory} from "react-icons/md";
 import {CgArrowsExchange} from "react-icons/cg";
-import {FaNewspaper} from "react-icons/fa";
+import {FaNewspaper, FaRegChartBar} from "react-icons/fa";
 import {IoIosMail} from "react-icons/io";
 import {PiUserSwitchLight, PiWarningCircleBold} from "react-icons/pi";
 import {RiLogoutCircleLine} from "react-icons/ri";
@@ -36,7 +36,9 @@ export function resolveIcon(val: string) {
       return <BsPatchExclamation />
     case 'VscAccount':
       return <VscAccount />
-    default:
+    case 'FaRegChartBar':
+      return <FaRegChartBar />
+        default:
       return null
   }
 }

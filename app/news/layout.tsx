@@ -18,7 +18,7 @@ import {getAuthHeader} from "@/app/services/configuration/configurationService";
  */
 export default function MarketNewsLayout({children}: { children: React.ReactNode }) {
 
-  const baseClass = "news-page"
+  const baseClass = "news-layout"
   const [isLoading, setIsLoading] = useState(false)
 
   //  TODO TEMP: only show these controls if an admin is logged in
