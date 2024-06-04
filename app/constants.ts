@@ -85,6 +85,7 @@ export const CoreConstants = {
     ISOShortMonthFormat: 'MMM',
     ISOShortMonthDayFormat: 'MMM D',
     ISOShortMonthFullDayFormat: 'MMM Do',
+    ISOShortMonthFullDayFormatTimeFormat: 'MMM Do HH:mm',
     ISOShortestMonthFormat: 'MM',
     ISOShortMonthDayYearFormat: 'MMM Do[,] YYYY',
     ISOShortHourFormat: 'H:mm',

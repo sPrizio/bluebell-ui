@@ -23,7 +23,7 @@ export default function Chart() {
 
   const baseClass = "chart-page"
 
-  const options = {
+  const initialOptions = {
     chart: {
       type: 'candlestick',
       height: 350
@@ -36,12 +36,8 @@ export default function Chart() {
       type: 'datetime',
       labels: {
         datetimeUTC: false,
-        formatter: function(value: any, timestamp: number, opts: any) {
-          if (quickPick === 'one-day') {
-            return moment(timestamp).format(CoreConstants.DateTime.ISOShortMonthDayYearFormat);
-          }
-
-          return moment(timestamp).format(CoreConstants.DateTime.ISOShortHourFormat);
+        formatter: function (value: any, timestamp: number, opts: any) {
+          return moment(timestamp).format(CoreConstants.DateTime.ISOShortMonthFullDayFormatTimeFormat);
         }
       }
     },
@@ -50,7 +46,7 @@ export default function Chart() {
         enabled: true
       },
       labels: {
-        formatter: function(value: string | number) {
+        formatter: function (value: string | number) {
           return formatNumberForDisplay(value)
         }
       }
@@ -66,12 +62,14 @@ export default function Chart() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [seriesData, setSeriesData] = useState<any>([{data: []}])
+  const [options, setOptions] = useState(initialOptions)
   const [quickPick, setQuickPick] = useState<string>(quickPicks[1].value)
-  const [startDate, setStartDate] = useState<Date | null>(moment().toDate())
-  const [endDate, setEndDate] = useState<Date | null>(moment().add(1, 'days').toDate())
+  const [startDate, setStartDate] = useState<Date | null>(moment().subtract(1, 'months').startOf('month').toDate())
+  const [endDate, setEndDate] = useState<Date | null>(moment().subtract(1, 'months').startOf('month').add(1, 'days').toDate())
 
   useEffect(() => {
     getMarketPrices()
+    setOptions({...options})
   }, [endDate, quickPick]);
 
 
@@ -85,6 +83,7 @@ export default function Chart() {
   function handleChange(val: Date) {
     setStartDate(val)
     setEndDate(moment(val).add(1, 'days').toDate())
+    setOptions({...options})
   }
 
   async function getMarketPrices() {
@@ -105,11 +104,6 @@ export default function Chart() {
         const data: StandardJsonResponse = await res.json()
         if (data.success) {
           const result = data.data
-
-          /*result.forEach((item: { x: string | number | Date; }) => {
-            item.x = new Date(moment(item.x).tz('America/Toronto').valueOf())
-          })*/
-
           setSeriesData([{data: result}])
         }
       }
@@ -142,11 +136,11 @@ export default function Chart() {
         </div>
         <div className={styles[`${baseClass}__control`]}>
           {
-            quickPick == 'one-hour' ?
+            quickPick === 'one-hour' ?
               <small>* For intervals of 1-hour, a 3-day window will be shown around the selected date</small> : null
           }
           {
-            quickPick == 'one-day' ?
+            quickPick === 'one-day' ?
               <small>* For intervals of 1-day, a 1-month window will be shown around the selected date</small> : null
           }
         </div>
@@ -158,7 +152,7 @@ export default function Chart() {
             hasBorder={false}
             hasOverflow={true}
             title={moment(startDate).format(CoreConstants.DateTime.ISOLongMonthDayYearFormat)}
-            content={[<IntradayChart series={seriesData} options={options} key={0}/>]}
+            content={[<IntradayChart series={seriesData} options={options} key={0} id={Math.random()}/>]}
             hasError={(seriesData?.[0].data?.length ?? 0) < 1}
           />
         </div>
