@@ -55,6 +55,8 @@ export default function Chart() {
   const quickPicks: SimpleOption[] = [
     {label: '1 Minute', value: 'one-minute', unit: 'days', count: 0, interval: Interval.MINUTE},
     {label: '5 Minute', value: 'five-minute', unit: 'days', count: 0, interval: Interval.MINUTE},
+    {label: '10 Minute', value: 'ten-minute', unit: 'days', count: 0, interval: Interval.MINUTE},
+    {label: '15 Minute', value: 'fifteen-minute', unit: 'days', count: 0, interval: Interval.MINUTE},
     {label: '30 Minute', value: 'thirty-minute', unit: 'days', count: 0, interval: Interval.MINUTE},
     {label: '1 hour', value: 'one-hour', unit: 'days', count: 0, interval: Interval.MINUTE},
     {label: '1 day', value: 'one-day', unit: 'days', count: 1, interval: Interval.MINUTE},

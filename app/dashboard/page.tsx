@@ -105,6 +105,7 @@ export default function Dashboard() {
         <div className={styles[`${baseClass}__page-column`]}>
           <div className={styles[`${baseClass}__page-component`]}>
             <BaseCard
+              loading={isLoading}
               title={'Balance'}
               subtitle={'CMC Markets MT4 CFD'}
               hasBorder={false}
@@ -127,6 +128,7 @@ export default function Dashboard() {
         <div className={styles[`${baseClass}__page-column`]}>
           <div className={styles[`${baseClass}__page-component`]}>
             <BaseCard
+              loading={isLoading}
               title={'Equity'}
               subtitle={'Last 6 months'}
               hasBorder={false}
@@ -136,6 +138,7 @@ export default function Dashboard() {
           </div>
           <div className={styles[`${baseClass}__page-component`]}>
             <BaseCard
+              loading={isLoading}
               title={'Activity'}
               subtitle={'A look at your account activity'}
               hasBorder={false}

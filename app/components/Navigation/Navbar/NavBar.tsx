@@ -6,10 +6,10 @@ import {resolveIcon} from "@/app/services/resolver/iconResolverService";
 import {RxHamburgerMenu} from "react-icons/rx";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
-import MainLogo from "@/app/components/Navigation/logo/MainLogo";
-import NavBarItem from "@/app/components/Navigation/navbar/NavBarItem";
-import Avatar from "@/app/components/Navigation/avatar/Avatar";
-import UserMenu from "@/app/components/Navigation/menu/UserMenu";
+import MainLogo from "@/app/components/Navigation/Logo/MainLogo";
+import NavBarItem from "@/app/components/Navigation/Navbar/NavBarItem";
+import Avatar from "@/app/components/Navigation/Avatar/Avatar";
+import UserMenu from "@/app/components/Navigation/Menu/UserMenu";
 
 /**
  * The top-page navigation component

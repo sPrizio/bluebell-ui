@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.min.css'
 import './bluebell-datepicker.css'
 import styles from './layout.module.scss'
 import Footer from "@/app/components/Footer/Footer";
-import NavBar from "@/app/components/Navigation/navbar/NavBar";
+import NavBar from "@/app/components/Navigation/Navbar/NavBar";
 
 export const metadata: Metadata = {
   title: 'Flowerpot',
